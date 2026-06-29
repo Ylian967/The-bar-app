@@ -83,7 +83,8 @@ Mail à `laury.bossaert@foreach-academy.fr` avant **02/07/2026 17h**. Soutenance
 | 2 | Projet Spring Boot + entités JPA | ✅ Fait (7 entités + 4 enums, mvn compile OK) |
 | 2 | Repositories (7) | ✅ Fait |
 | 2 | API Catégories + Cocktails (CRUD) | ✅ Fait (DTO/service/controller + gestion erreurs) |
-| 2 | API Ingrédients + Commandes | ⬜ À faire |
+| 2 | API Ingrédients (CRUD) | ✅ Fait |
+| 2 | API Commandes (passer + avancer prépa, règle d'or) | ✅ Fait + 3 tests OK |
 | 2 | Validation des entrées | ⬜ À faire |
 | 2 | Tests JUnit > 85 % | ⬜ À faire |
 | 2 | Dockerfile back + script BDD | ⬜ À faire |

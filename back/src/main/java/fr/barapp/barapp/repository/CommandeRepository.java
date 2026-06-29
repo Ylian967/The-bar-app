@@ -7,5 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CommandeRepository extends JpaRepository<Commande, Long> {
-    List<Commande> findByStatutNot(StatutCommande statut);
+
+    /** Commandes à traiter par le barman (tout sauf les terminées), plus anciennes d'abord. */
+    List<Commande> findByStatutNotOrderByDateCreationAsc(StatutCommande statut);
+
+    /** Commandes d'un client (par prénom / table), plus récentes d'abord. */
+    List<Commande> findByClientNomIgnoreCaseOrderByDateCreationDesc(String clientNom);
 }

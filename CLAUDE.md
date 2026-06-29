@@ -88,7 +88,11 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   Fait aussi : 7 repositories, gestion d'erreurs (`RessourceIntrouvableException` + `GestionnaireExceptions`),
   **API Catégories + Cocktails** (DTO records, mapper, service, controller, validation `@Valid`). mvn compile OK.
   Packages : dto/ mapper/ service/ controller/ exception/ repository/. Reste : Ingrédients + Commandes
-  (cœur métier : passer commande + avancer la préparation) → JWT → tests >85% → Dockerfile/compose.
+  (cœur métier) → JWT → tests >85% → Dockerfile/compose.
+  ✅ FAIT depuis : API **Ingrédients** (CRUD) + API **Commandes** (passer commande avec calcul prix,
+  `aTraiter`, `parClient`, `avancerLigne` avec la RÈGLE D'OR de recalcul du statut). Exception métier
+  `RequeteInvalideException` (400). 1er test : `CommandeServiceTest` (3 tests verts via Mockito+H2 non requis).
+  Lancer les tests : `cd back && . ~/tools/env.sh && mvn test`. RESTE : sécurité JWT, + de tests (>85%), Docker.
 - 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
   `mvn` : `. "$HOME/tools/env.sh"` (définit JAVA_HOME=jdk21 + PATH maven). Build : `cd back && mvn ...`.
   Pas de Postgres local → `ddl-auto=validate` ne se teste qu'en Docker ; tests via H2.

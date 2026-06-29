@@ -21,6 +21,12 @@ public class GestionnaireExceptions {
         return reponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    /** Règle métier non respectée -> 400. */
+    @ExceptionHandler(RequeteInvalideException.class)
+    public ResponseEntity<Map<String, Object>> requeteInvalide(RequeteInvalideException ex) {
+        return reponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
     /** Données d'entrée invalides -> 400 avec le détail par champ. */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> invalide(MethodArgumentNotValidException ex) {

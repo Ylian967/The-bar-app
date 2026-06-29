@@ -5,5 +5,10 @@ public enum StatutPreparation {
     PREPARATION_INGREDIENTS,
     ASSEMBLAGE,
     DRESSAGE,
-    TERMINEE
+    TERMINEE;
+
+    /** Étape suivante (ou la même si déjà terminée). */
+    public StatutPreparation suivant() {
+        return this == TERMINEE ? this : values()[ordinal() + 1];
+    }
 }
