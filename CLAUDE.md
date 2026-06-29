@@ -92,7 +92,13 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   ✅ FAIT depuis : API **Ingrédients** (CRUD) + API **Commandes** (passer commande avec calcul prix,
   `aTraiter`, `parClient`, `avancerLigne` avec la RÈGLE D'OR de recalcul du statut). Exception métier
   `RequeteInvalideException` (400). 1er test : `CommandeServiceTest` (3 tests verts via Mockito+H2 non requis).
-  Lancer les tests : `cd back && . ~/tools/env.sh && mvn test`. RESTE : sécurité JWT, + de tests (>85%), Docker.
+  Lancer les tests : `cd back && . ~/tools/env.sh && mvn test`.
+  ✅ FAIT : **Sécurité JWT** (Spring Security + jjwt 0.12.6). `POST /api/auth/login` {email,motDePasse}
+  -> {token,...}. Barmaker créé au démarrage par `InitialisationDonnees` (barmaker@barapp.fr / Barmaker123).
+  Routes publiques : GET catalogue, POST /api/commandes, GET /api/commandes (suivi). Routes BARMAKER :
+  écritures cocktails/categories/ingredients, GET /commandes/a-traiter, PATCH avancer. CORS configuré
+  (app.cors.origins). `db/init.sql` ne seede plus l'utilisateur (créé par le runner).
+  RESTE : **Docker** (compose postgres+init.sql+back) puis **+ de tests (>85%)**.
 - 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
   `mvn` : `. "$HOME/tools/env.sh"` (définit JAVA_HOME=jdk21 + PATH maven). Build : `cd back && mvn ...`.
   Pas de Postgres local → `ddl-auto=validate` ne se teste qu'en Docker ; tests via H2.

@@ -85,7 +85,8 @@ Mail à `laury.bossaert@foreach-academy.fr` avant **02/07/2026 17h**. Soutenance
 | 2 | API Catégories + Cocktails (CRUD) | ✅ Fait (DTO/service/controller + gestion erreurs) |
 | 2 | API Ingrédients (CRUD) | ✅ Fait |
 | 2 | API Commandes (passer + avancer prépa, règle d'or) | ✅ Fait + 3 tests OK |
-| 2 | Validation des entrées | ⬜ À faire |
+| 2 | Validation des entrées | ✅ Fait (@Valid sur tous les endpoints) |
+| 2 | Sécurité JWT (login barmaker) | ✅ Fait |
 | 2 | Tests JUnit > 85 % | ⬜ À faire |
 | 2 | Dockerfile back + script BDD | ⬜ À faire |
 | 3 | Front Vue + TypeScript (vues client) | ⬜ À faire |

@@ -21,6 +21,13 @@ public class GestionnaireExceptions {
         return reponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    /** Identifiants invalides -> 401. */
+    @ExceptionHandler(org.springframework.security.core.AuthenticationException.class)
+    public ResponseEntity<Map<String, Object>> authentification(
+            org.springframework.security.core.AuthenticationException ex) {
+        return reponse(HttpStatus.UNAUTHORIZED, "Email ou mot de passe incorrect");
+    }
+
     /** Règle métier non respectée -> 400. */
     @ExceptionHandler(RequeteInvalideException.class)
     public ResponseEntity<Map<String, Object>> requeteInvalide(RequeteInvalideException ex) {

@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    container_name: barapp-db
+    environment:
+      POSTGRES_DB: barapp
+      POSTGRES_USER: barapp
+      POSTGRES_PASSWORD: barapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - barapp_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U barapp -d barapp"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  back:
+    build: ./back
+    container_name: barapp-back
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/barapp
+      DB_USER: barapp
+      DB_PASSWORD: barapp
+      JWT_SECRET: bar-app-cle-secrete-de-developpement-a-changer-2026
+      CORS_ORIGINS: http://localhost:5173,http://localhost:4173
+    ports:
+      - "8080:8080"
+
+volumes:
+  barapp_db:
