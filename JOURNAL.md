@@ -89,7 +89,9 @@ Mail à `laury.bossaert@foreach-academy.fr` avant **02/07/2026 17h**. Soutenance
 | 2 | Sécurité JWT (login barmaker) | ✅ Fait |
 | 2 | Tests JUnit > 85 % | ✅ Fait — 47 tests, **92% lignes** (JaCoCo) |
 | 2 | Dockerfile back + Docker Compose | ✅ Fait — stack lancé, API testée OK end-to-end |
-| 3 | Front Vue + TypeScript (vues client) | ⬜ À faire |
+| 3 | Init Vue 3 + TS + fondation (types, services API, stores Pinia, router, thème) | ✅ Fait |
+| 3 | Page Carte (client) branchée API | ✅ Fait (vérifiée : photos + données réelles) |
+| 3 | Vues client : fiche, panier, mes commandes | ⬜ À faire (stubs en place) |
 | 3 | Front (vues barmaker) | ⬜ À faire |
 | 3 | Responsive + tests front | ⬜ À faire |
 | 3 | Dockerfile front | ⬜ À faire |

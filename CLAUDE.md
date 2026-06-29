@@ -109,6 +109,13 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   ➡️ PROCHAINE GROSSE ÉTAPE = **Phase 3 : front Vue 3 + TypeScript** (vues client mobile + barman /admin,
   appels API via services, store Pinia, responsive ; consommer http://localhost:8080 ; Dockerfile front).
   S'appuyer sur les maquettes `maquettes/barapp-maquettes.html` (style + structure déjà faits).
+  ⏳ Phase 3 EN COURS. Projet `front/` = Vue 3 + TS (Vite) + vue-router + pinia + axios.
+  Fondation FAITE : `types/models.ts`, `services/{http,catalogue,commandes,auth}.ts`, `stores/{auth,panier}.ts`,
+  `router/index.ts` (routes client + /admin barman avec garde), `assets/theme.css` (design system vibrant),
+  `components/BottomNav.vue`. **Page Carte client FAITE et vérifiée** (vraies données/photos via API).
+  Stubs en place pour : FicheCocktail, PanierPage, MesCommandes, LoginAdmin, CommandesATraiter, DetailCommande, GestionCarte.
+  Build front : `cd front && npm run build` (OK). Dev : `npm run dev` (5173). Le back doit tourner (docker compose).
+  CORS back autorise 5173/4173. RESTE : remplir les 7 vues, tests front, Dockerfile front + ajout au compose.
 - 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
   `mvn` : `. "$HOME/tools/env.sh"` (définit JAVA_HOME=jdk21 + PATH maven). Build : `cd back && mvn ...`.
   Pas de Postgres local → `ddl-auto=validate` ne se teste qu'en Docker ; tests via H2.
