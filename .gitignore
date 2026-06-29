@@ -1,0 +1,28 @@
+# --- Java / Spring Boot ---
+back/target/
+*.class
+*.jar
+!**/gradle-wrapper.jar
+.mvn/
+HELP.md
+
+# --- Node / Vue ---
+front/node_modules/
+front/dist/
+front/.vite/
+*.local
+
+# --- IDE / OS ---
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Env / secrets ---
+.env
+*.env
+
+# --- Logs ---
+*.log
