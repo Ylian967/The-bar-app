@@ -3,6 +3,11 @@
 > Ce fichier est lu automatiquement à chaque session. Il dit **où on en est** et **comment travailler avec Ylian**.
 > ⚠️ À chaque fin d'étape : mettre à jour ce fichier ET `JOURNAL.md`.
 
+## 🔝 À FAIRE EN DÉBUT DE CHAQUE SESSION (obligatoire)
+1. **Lire le sujet de l'examen** : `docs/sujet-exam.pdf` (la source de vérité des consignes).
+2. Lire `JOURNAL.md` (où on en est en détail).
+3. Reprendre à « Prochaine action concrète » (en bas de ce fichier).
+
 ## 🎯 Le projet
 Examen de fin de 1ʳᵉ année ForEach — **Ylian MERRIR**.
 Application web **« Le Bar'app »** : bar à cocktails. Deux rôles **client** et **barmaker**.
@@ -20,6 +25,11 @@ responsive, clean code + design patterns, Dockerfile back + front + script init 
 - **Auth** : login **email + mot de passe**, rôle `BARMAKER`, sécurisé par **JWT** (PAS de Google Auth).
 - Un **compte barmaker de test** sera fourni à l'évaluateur (identifiants dans le README).
 - Environnement lancé via **Docker Compose**.
+- **Formats d'écran (pas de responsive imposé)** : interface CLIENT = **téléphone (mobile)**
+  uniquement ; interface BARMAN = **tablette** uniquement. Maquettes faites à ces formats.
+- **Données** : import UNIQUE depuis TheCocktailDB → générer le script SQL d'init (`db/`) avec
+  cocktails + ingrédients + images **téléchargées en local**. PAS d'appel API au runtime
+  (l'app doit être autonome pour la démo). Tailles S/M/L + prix générés par nous.
 - MCD = 8 tables : utilisateur, categorie, cocktail, ingredient, cocktail_ingredient,
   cocktail_taille (prix par taille S/M/L), commande, ligne_commande (avec statut_preparation).
   Détail complet dans `docs/MCD.md`.
@@ -41,7 +51,23 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
 ## 📊 Où on en est (mettre à jour à chaque session)
 - ✅ Phase 0 : structure projet + journal + .gitignore + README + Git/GitHub poussé.
 - ✅ Phase 1 — MCD : `docs/MCD.md` + `maquettes/MCD.pdf`.
-- ⏳ **Phase 1 — EN COURS : maquettes Figma** (guider Ylian écran par écran ; il les fait à la main).
+- ✅ **Phase 1 — Maquettes VALIDÉES** (8 écrans, `maquettes/barapp-maquettes.html`, vraies photos + SVG). Méthode : Ylian a DUPLIQUÉ 1 SEUL kit communautaire
+  (CLIENT = **"Drink ordering app" (kit café/vert), file 1305198455555652896**, déjà dans son Figma,
+  fichier renommé `Bar'app`). Je le guide écran par écran (limite Figma MCP = 6/mois → PAS de use_figma).
+  Le kit contient : Home, Fiche produit, Panier/Make Payment, planche styles+composants.
+  Parcours CLIENT = 4 écrans : (1) La Carte [= Home adapté], (2) Détail cocktail [= Fiche produit,
+  ajouter tailles S/M/L + ingrédients], (3) Panier/commande [= Make Payment adapté],
+  (4) **Mes commandes** [historique + en cours / suivi] → À CONSTRUIRE avec les composants du kit.
+  ⚠️ BARMAN : même style, format TABLETTE, construit avec les composants du kit (pas un autre kit).
+  Barman = 4 écrans : login /admin, commandes à traiter, détail commande + avancement, gestion carte.
+  Export PDF final dans maquettes/.
+  → ⚠️ BLOCAGE Figma MCP : le compte connecté (ylianmerrir7@gmail.com, siège **View / Starter**)
+    n'a PAS le droit d'écrire dans les fichiers Figma (erreur "don't have edit access" même après
+    partage en édition). Donc impossible de générer via use_figma. NE PAS retenter sans changement de forfait.
+  → SOLUTION RETENUE : maquettes construites en **HTML/CSS** par Claude, style "Vibrant & Fun",
+    fichier `maquettes/barapp-maquettes.html` (8 écrans). À importer dans Figma via le plugin
+    **html.to.design**, et/ou exporter en PDF (Ctrl+P). Réutilisable comme base du front Vue (Phase 3).
+  → Aperçu rendu : `maquettes/preview.png`. Ylian avait déjà fait 3 écrans client à la main dans Figma.
 - ⬜ Phase 1 — script SQL d'init (`db/`).
 - ⬜ Phase 2 — back Spring Boot (entités, API CRUD, validation, JWT, tests >85%, Dockerfile, script BDD).
 - ⬜ Phase 3 — front Vue + TS (vues client + barman /admin, responsive, tests, Dockerfile).
@@ -53,6 +79,7 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
 - `README.md` — instructions de lancement (à compléter en Phase 2/3).
 
 ## 🔜 Prochaine action concrète
-Guider Ylian pour faire les **maquettes Figma** : écran par écran (carte/cocktails, fiche cocktail,
-panier, commande, suivi de préparation côté client ; login /admin, gestion carte, liste des
-commandes, écran d'avancement côté barman). Puis exporter en PDF dans `maquettes/`.
+Maquettes validées. Prochaine étape = **Phase 2 (back Spring Boot)** OU d'abord l'**import des données**
+(script qui interroge TheCocktailDB une fois → génère `db/init.sql` avec catégories/cocktails/ingrédients/
+tailles+prix + télécharge les images). Recommander de commencer par initialiser le projet Spring Boot
+(entités du MCD) puis brancher le script d'init. Penser : Docker Compose (postgres+back+front), tests JUnit >85%.
