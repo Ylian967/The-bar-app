@@ -26,7 +26,7 @@ la préparation ; les **barmakers** créent la carte et font avancer les command
 | Phase | Tâche | Statut |
 |-------|-------|--------|
 | 0 | Setup projet + Git + GitHub | ⏳ En cours |
-| 1 | MCD | ⬜ À faire |
+| 1 | MCD | ✅ Fait (docs/MCD.md + maquettes/MCD.pdf) |
 | 1 | Script SQL d'init | ⬜ À faire |
 | 1 | Maquettes Figma | ⬜ À faire |
 | 2 | Entités + API CRUD Spring Boot | ⬜ À faire |
@@ -50,6 +50,9 @@ Légende : ⬜ à faire · ⏳ en cours · ✅ fait
 - Lecture du sujet, choix de l'organisation.
 - Création de la structure du projet sur le bureau : `bar-app/` (back, front, db, docs, maquettes).
 - Création de ce journal.
+- Décision : 2 interfaces (client + barman sur `/admin`), auth email/mdp + JWT.
+- MCD conçu (8 tables) → `docs/MCD.md`, exporté en PDF → `maquettes/MCD.pdf`.
+- Ajout `.gitignore` + `README.md`.
 
 ---
 
