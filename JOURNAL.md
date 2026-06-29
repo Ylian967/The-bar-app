@@ -87,8 +87,8 @@ Mail à `laury.bossaert@foreach-academy.fr` avant **02/07/2026 17h**. Soutenance
 | 2 | API Commandes (passer + avancer prépa, règle d'or) | ✅ Fait + 3 tests OK |
 | 2 | Validation des entrées | ✅ Fait (@Valid sur tous les endpoints) |
 | 2 | Sécurité JWT (login barmaker) | ✅ Fait |
-| 2 | Tests JUnit > 85 % | ⬜ À faire |
-| 2 | Dockerfile back + script BDD | ⬜ À faire |
+| 2 | Tests JUnit > 85 % | ✅ Fait — 47 tests, **92% lignes** (JaCoCo) |
+| 2 | Dockerfile back + Docker Compose | ✅ Fait — stack lancé, API testée OK end-to-end |
 | 3 | Front Vue + TypeScript (vues client) | ⬜ À faire |
 | 3 | Front (vues barmaker) | ⬜ À faire |
 | 3 | Responsive + tests front | ⬜ À faire |

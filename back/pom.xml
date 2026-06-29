@@ -112,6 +112,16 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
+                <configuration>
+                    <!-- Exclut le code sans logique (boilerplate) de la mesure de couverture -->
+                    <excludes>
+                        <exclude>**/entity/**</exclude>
+                        <exclude>**/dto/**</exclude>
+                        <exclude>**/config/**</exclude>
+                        <exclude>**/security/JwtAuthFilter.*</exclude>
+                        <exclude>**/BarappApplication.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

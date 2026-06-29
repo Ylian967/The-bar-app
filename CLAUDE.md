@@ -98,7 +98,17 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   Routes publiques : GET catalogue, POST /api/commandes, GET /api/commandes (suivi). Routes BARMAKER :
   écritures cocktails/categories/ingredients, GET /commandes/a-traiter, PATCH avancer. CORS configuré
   (app.cors.origins). `db/init.sql` ne seede plus l'utilisateur (créé par le runner).
-  RESTE : **Docker** (compose postgres+init.sql+back) puis **+ de tests (>85%)**.
+  ✅ FAIT : **Docker** (`back/Dockerfile` multi-stage, `docker-compose.yml` postgres16+back).
+  Lancer : `cd <projet> && rtk proxy docker compose up -d --build` (CLI docker via `rtk proxy ...`
+  car le hook intercepte `docker`). Images cocktails copiées dans `back/.../static/images/cocktails/`,
+  servies à `/images/cocktails/x.jpg`. Fix appliqué : enlevé `length=1` sur les colonnes `taille`
+  (Hibernate validate exigeait char(1) vs varchar). **API testée OK end-to-end** (carte, login JWT,
+  403 sans token, passer commande total auto, avancer prépa → règle d'or). Back = 8080, db = 5432.
+  ✅ **PHASE 2 COMPLÈTE** : 47 tests JUnit (Mockito), couverture **92% lignes / 90% instructions** (JaCoCo,
+  excludes : entity/dto/config/JwtAuthFilter/main). Rapport : `back/target/site/jacoco/index.html`.
+  ➡️ PROCHAINE GROSSE ÉTAPE = **Phase 3 : front Vue 3 + TypeScript** (vues client mobile + barman /admin,
+  appels API via services, store Pinia, responsive ; consommer http://localhost:8080 ; Dockerfile front).
+  S'appuyer sur les maquettes `maquettes/barapp-maquettes.html` (style + structure déjà faits).
 - 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
   `mvn` : `. "$HOME/tools/env.sh"` (définit JAVA_HOME=jdk21 + PATH maven). Build : `cd back && mvn ...`.
   Pas de Postgres local → `ddl-auto=validate` ne se teste qu'en Docker ; tests via H2.

@@ -25,7 +25,7 @@ public class CocktailTaille {
     private Cocktail cocktail;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 1)
+    @Column(nullable = false)
     private Taille taille;
 
     @Column(nullable = false, precision = 6, scale = 2)
