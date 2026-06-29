@@ -113,6 +113,9 @@ Légende : ⬜ à faire · ⏳ en cours · ✅ fait
   À importer dans Figma via plugin html.to.design et/ou exporter en PDF. Servira de base au front Vue.
 - Maquettes enrichies : vraies photos de cocktails (TheCocktailDB, en local dans `maquettes/img/`)
   + icônes SVG propres. **Étape maquettes VALIDÉE** ✅.
+- Nettoyage final (principe « rien d'inutile dans la spec ») : menu barman = 2 sections
+  (Commandes à traiter + Gestion de la carte) ; barre client = 3 onglets (Accueil/Panier/Commandes,
+  « Profil » retiré car compte client non demandé). Polices = Poppins (titres) + Inter (texte).
 
 ---
 
