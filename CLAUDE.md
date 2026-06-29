@@ -68,7 +68,10 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
     fichier `maquettes/barapp-maquettes.html` (8 écrans). À importer dans Figma via le plugin
     **html.to.design**, et/ou exporter en PDF (Ctrl+P). Réutilisable comme base du front Vue (Phase 3).
   → Aperçu rendu : `maquettes/preview.png`. Ylian avait déjà fait 3 écrans client à la main dans Figma.
-- ⬜ Phase 1 — script SQL d'init (`db/`).
+- ✅ Phase 1 — données importées : `db/init.sql` (schéma 8 tables + 5 catégories, 16 cocktails,
+  34 ingrédients, tailles S/M/L) + 16 images dans `db/images/` (TheCocktailDB). Schéma = référence
+  pour les entités JPA en Phase 2. Note : `commande.client_nom` ajouté (client non authentifié) ;
+  user barmaker seedé avec mot de passe à encoder en BCrypt en Phase 2 ('Barmaker123').
 - ⬜ Phase 2 — back Spring Boot (entités, API CRUD, validation, JWT, tests >85%, Dockerfile, script BDD).
 - ⬜ Phase 3 — front Vue + TS (vues client + barman /admin, responsive, tests, Dockerfile).
 - ⬜ Phase 4 — PowerPoint + répétition démo 15 min.

@@ -59,7 +59,8 @@ Une commande passée par un client.
 | Champ | Type | Note |
 |-------|------|------|
 | id | bigint (PK) | |
-| client_id | bigint (FK → utilisateur) | |
+| client_id | bigint (FK → utilisateur, **nullable**) | client connecté éventuel |
+| client_nom | varchar | prénom / table (client non authentifié — cas par défaut) |
 | statut | varchar | `COMMANDEE`, `EN_PREPARATION`, `TERMINEE` |
 | date_creation | timestamp | |
 

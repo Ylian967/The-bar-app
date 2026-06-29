@@ -78,7 +78,7 @@ Mail à `laury.bossaert@foreach-academy.fr` avant **02/07/2026 17h**. Soutenance
 |-------|-------|--------|
 | 0 | Setup projet + Git + GitHub | ⏳ En cours |
 | 1 | MCD | ✅ Fait (docs/MCD.md + maquettes/MCD.pdf) |
-| 1 | Script SQL d'init | ⬜ À faire |
+| 1 | Script SQL d'init + données | ✅ Fait (db/init.sql, 16 cocktails, 16 images) |
 | 1 | Maquettes (8 écrans) | ✅ Fait (maquettes/barapp-maquettes.html + preview.png) |
 | 2 | Entités + API CRUD Spring Boot | ⬜ À faire |
 | 2 | Validation des entrées | ⬜ À faire |
