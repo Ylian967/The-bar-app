@@ -48,6 +48,16 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
 - Projet sur le bureau Windows : `C:\Users\meryl\Desktop\bar-app` (= `/mnt/c/Users/meryl/Desktop/bar-app` en WSL).
 - Ne pas toucher à une BDD sans prévenir.
 
+## 📐 Conventions de code (EXIGÉ par Ylian — à respecter tout du long)
+- **Fichiers COURTS** (~150 lignes max), une classe/un composant = **une responsabilité**, méthodes courtes.
+- **Clean code + patterns** (noté à l'exam). Pas de logique métier dans les controllers.
+- **Back** : couches `controller`/`service`/`repository`/`entity` + **DTO** (ne jamais exposer les entités).
+  Validation des entrées (`@Valid`), gestion d'erreurs centralisée (`@ControllerAdvice`), tests par service.
+- **Front** : petits composants Vue typés (Composition API + TS), appels API dans des **services dédiés**,
+  état dans **Pinia** (pas d'appels API dispersés dans les composants).
+- **Partout** : nommage explicite, DRY (pas de duplication), commits réguliers.
+- Quand un fichier devient long → le découper. Préférer plusieurs petits fichiers clairs.
+
 ## 📊 Où on en est (mettre à jour à chaque session)
 - ✅ Phase 0 : structure projet + journal + .gitignore + README + Git/GitHub poussé.
 - ✅ Phase 1 — MCD : `docs/MCD.md` + `maquettes/MCD.pdf`.
@@ -72,7 +82,16 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   34 ingrédients, tailles S/M/L) + 16 images dans `db/images/` (TheCocktailDB). Schéma = référence
   pour les entités JPA en Phase 2. Note : `commande.client_nom` ajouté (client non authentifié) ;
   user barmaker seedé avec mot de passe à encoder en BCrypt en Phase 2 ('Barmaker123').
-- ⬜ Phase 2 — back Spring Boot (entités, API CRUD, validation, JWT, tests >85%, Dockerfile, script BDD).
+- ⏳ Phase 2 — back Spring Boot EN COURS. Fait : projet Maven (`back/pom.xml`, Spring Boot 3.3.5,
+  Java 21, Lombok, JaCoCo), `BarappApplication`, `application.properties`, **7 entités + 4 enums**
+  (package `fr.barapp.barapp.entity`), mappées sur `db/init.sql`. `mvn compile` = OK.
+  Fait aussi : 7 repositories, gestion d'erreurs (`RessourceIntrouvableException` + `GestionnaireExceptions`),
+  **API Catégories + Cocktails** (DTO records, mapper, service, controller, validation `@Valid`). mvn compile OK.
+  Packages : dto/ mapper/ service/ controller/ exception/ repository/. Reste : Ingrédients + Commandes
+  (cœur métier : passer commande + avancer la préparation) → JWT → tests >85% → Dockerfile/compose.
+- 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
+  `mvn` : `. "$HOME/tools/env.sh"` (définit JAVA_HOME=jdk21 + PATH maven). Build : `cd back && mvn ...`.
+  Pas de Postgres local → `ddl-auto=validate` ne se teste qu'en Docker ; tests via H2.
 - ⬜ Phase 3 — front Vue + TS (vues client + barman /admin, responsive, tests, Dockerfile).
 - ⬜ Phase 4 — PowerPoint + répétition démo 15 min.
 
