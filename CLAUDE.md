@@ -113,7 +113,10 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   Fondation FAITE : `types/models.ts`, `services/{http,catalogue,commandes,auth}.ts`, `stores/{auth,panier}.ts`,
   `router/index.ts` (routes client + /admin barman avec garde), `assets/theme.css` (design system vibrant),
   `components/BottomNav.vue`. **Page Carte client FAITE et vérifiée** (vraies données/photos via API).
-  Stubs en place pour : FicheCocktail, PanierPage, MesCommandes, LoginAdmin, CommandesATraiter, DetailCommande, GestionCarte.
+  ✅ **Parcours CLIENT complet** : CartePage, FicheCocktail (tailles/ingrédients/ajout panier),
+  PanierPage (récap + commander → POST API), MesCommandes (onglets en cours/historique + suivi).
+  Vérifié visuellement (responsive, max-width 480). Stubs restants : LoginAdmin, CommandesATraiter,
+  DetailCommande, GestionCarte (= partie BARMAN, à faire).
   Build front : `cd front && npm run build` (OK). Dev : `npm run dev` (5173). Le back doit tourner (docker compose).
   CORS back autorise 5173/4173. RESTE : remplir les 7 vues, tests front, Dockerfile front + ajout au compose.
 - 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
