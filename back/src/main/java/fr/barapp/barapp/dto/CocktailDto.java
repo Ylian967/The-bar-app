@@ -6,6 +6,7 @@ import java.util.List;
 public record CocktailDto(
         Long id,
         String nom,
+        String accroche,
         String description,
         String imageUrl,
         Long categorieId,

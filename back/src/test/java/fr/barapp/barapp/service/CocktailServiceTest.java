@@ -56,7 +56,7 @@ class CocktailServiceTest {
     }
 
     private CocktailRequest requete() {
-        return new CocktailRequest("Mojito", "Frais", "/images/cocktails/mojito.jpg", 1L,
+        return new CocktailRequest("Mojito", "Frais & mentholé", "Frais", "/images/cocktails/mojito.jpg", 1L,
                 List.of(new TailleRequest(Taille.S, new BigDecimal("7.00"))), Set.of(1L));
     }
 

@@ -25,6 +25,10 @@ public class Cocktail {
     @Column(nullable = false, length = 120)
     private String nom;
 
+    /** Courte accroche affichée sous le nom (ex : « Frais & mentholé »). */
+    @Column(length = 160)
+    private String accroche;
+
     @Column(columnDefinition = "text")
     private String description;
 

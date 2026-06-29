@@ -1,6 +1,109 @@
+<script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { commandeService } from '../../services/commandes'
+import { useAuthStore } from '../../stores/auth'
+import type { Commande, StatutCommande } from '../../types/models'
+import SidebarBarman from '../../components/barman/SidebarBarman.vue'
+
+const router = useRouter()
+const auth = useAuthStore()
+
+const commandes = ref<Commande[]>([])
+const filtre = ref<'toutes' | 'COMMANDEE' | 'EN_PREPARATION'>('toutes')
+let timer: number | undefined
+
+const affichees = computed(() =>
+  filtre.value === 'toutes' ? commandes.value : commandes.value.filter((c) => c.statut === filtre.value),
+)
+
+function badge(s: StatutCommande): string {
+  return s === 'EN_PREPARATION' ? 'prep' : 'cmd'
+}
+function libelle(s: StatutCommande): string {
+  return s === 'EN_PREPARATION' ? 'En prépa' : 'Commandée'
+}
+function heure(iso: string): string {
+  return new Date(iso).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+}
+function nbCocktails(c: Commande): number {
+  return c.lignes.reduce((s, l) => s + l.quantite, 0)
+}
+
+async function charger() {
+  commandes.value = await commandeService.aTraiter()
+}
+
+function deconnexion() {
+  auth.logout()
+  router.push({ name: 'login' })
+}
+
+onMounted(() => {
+  charger()
+  timer = window.setInterval(charger, 5000) // rafraîchissement live
+})
+onUnmounted(() => clearInterval(timer))
+</script>
+
 <template>
-  <div class="stub"><h2>Commandes à traiter</h2><p>Écran à venir…</p></div>
+  <div class="layout">
+    <SidebarBarman />
+    <main class="main">
+      <header class="tbar">
+        <div>
+          <h2>Commandes à traiter</h2>
+          <p class="sub">{{ commandes.length }} commande(s) en attente</p>
+        </div>
+        <div class="who">
+          <span class="avt">{{ (auth.nom ?? 'B')[0] }}</span>
+          Barmaker · {{ auth.nom }}
+          <button class="out" @click="deconnexion">Déconnexion</button>
+        </div>
+      </header>
+
+      <div class="tabs">
+        <button class="t" :class="{ on: filtre === 'toutes' }" @click="filtre = 'toutes'">Toutes</button>
+        <button class="t" :class="{ on: filtre === 'COMMANDEE' }" @click="filtre = 'COMMANDEE'">À faire</button>
+        <button class="t" :class="{ on: filtre === 'EN_PREPARATION' }" @click="filtre = 'EN_PREPARATION'">En cours</button>
+      </div>
+
+      <p v-if="affichees.length === 0" class="etat">Aucune commande à traiter pour le moment. 🍸</p>
+
+      <div class="grid">
+        <article v-for="c in affichees" :key="c.id" class="tcard" @click="router.push({ name: 'detail-commande', params: { id: c.id } })">
+          <div class="top">
+            <span class="id">#{{ c.id }}</span>
+            <span class="badge" :class="badge(c.statut)">{{ libelle(c.statut) }}</span>
+          </div>
+          <div class="li">🕘 {{ heure(c.dateCreation) }} · {{ nbCocktails(c) }} cocktail(s)</div>
+          <div class="li noms">{{ c.lignes.map((l) => l.cocktailNom).join(' · ') }}</div>
+          <div class="li client">👤 {{ c.clientNom }}</div>
+          <div class="go">Traiter →</div>
+        </article>
+      </div>
+    </main>
+  </div>
 </template>
+
 <style scoped>
-.stub { padding: 60px 20px; text-align: center; color: var(--ink-soft); }
+.layout { display: flex; min-height: 100vh; background: var(--cream); }
+.main { flex: 1; padding: 26px 30px; }
+.tbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.tbar h2 { font-size: 24px; font-weight: 800; }
+.sub { color: var(--ink-soft); font-size: 13px; }
+.who { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
+.avt { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--grape), #3fb6ff); display: grid; place-items: center; color: #fff; font-weight: 700; }
+.out { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; color: var(--ink-soft); font-size: 12px; font-weight: 600; }
+.tabs { display: flex; gap: 8px; background: #f2ecf7; padding: 5px; border-radius: 16px; max-width: 360px; margin-bottom: 20px; }
+.t { flex: 1; padding: 10px; border-radius: 12px; font-weight: 600; font-size: 13px; color: var(--ink-soft); background: transparent; }
+.t.on { background: #fff; color: var(--ink); box-shadow: var(--shadow-sm); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.tcard { background: #fff; border-radius: 20px; padding: 18px; box-shadow: var(--shadow-sm); cursor: pointer; transition: transform 0.1s; }
+.tcard:hover { transform: translateY(-2px); }
+.top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.id { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; }
+.li { font-size: 13px; color: var(--ink-soft); margin: 3px 0; }
+.li.noms { color: var(--ink); }
+.go { margin-top: 14px; background: linear-gradient(135deg, var(--coral), var(--coral-d)); color: #fff; text-align: center; padding: 11px; border-radius: 14px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; }
 </style>

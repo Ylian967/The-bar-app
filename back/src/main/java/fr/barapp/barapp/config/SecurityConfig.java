@@ -60,6 +60,8 @@ public class SecurityConfig {
                                 "/api/cocktails/**", "/api/categories/**", "/api/ingredients/**").hasRole("BARMAKER")
                         .requestMatchers(HttpMethod.DELETE,
                                 "/api/cocktails/**", "/api/categories/**", "/api/ingredients/**").hasRole("BARMAKER")
+                        // Catalogue externe (recherche + import) = barmaker
+                        .requestMatchers("/api/catalogue-externe/**").hasRole("BARMAKER")
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

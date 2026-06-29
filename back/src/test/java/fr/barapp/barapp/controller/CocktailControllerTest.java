@@ -24,7 +24,7 @@ class CocktailControllerTest {
     private CocktailController controller;
 
     private CocktailDto dto() {
-        return new CocktailDto(1L, "Mojito", "Frais", "/images/cocktails/mojito.jpg",
+        return new CocktailDto(1L, "Mojito", "Frais & mentholé", "Frais", "/images/cocktails/mojito.jpg",
                 1L, "Classiques", List.of(), List.of());
     }
 
@@ -42,14 +42,14 @@ class CocktailControllerTest {
 
     @Test
     void creer_renvoie_201() {
-        CocktailRequest req = new CocktailRequest("Mojito", null, null, 1L, List.of(), null);
+        CocktailRequest req = new CocktailRequest("Mojito", null, null, null, 1L, List.of(), null);
         when(service.creer(req)).thenReturn(dto());
         assertThat(controller.creer(req).getStatusCode().value()).isEqualTo(201);
     }
 
     @Test
     void modifier() {
-        CocktailRequest req = new CocktailRequest("Mojito", null, null, 1L, List.of(), null);
+        CocktailRequest req = new CocktailRequest("Mojito", null, null, null, 1L, List.of(), null);
         when(service.modifier(1L, req)).thenReturn(dto());
         assertThat(controller.modifier(1L, req).nom()).isEqualTo("Mojito");
     }

@@ -12,6 +12,9 @@ public record CocktailRequest(
         @Size(max = 120, message = "Le nom ne doit pas dépasser 120 caractères")
         String nom,
 
+        @Size(max = 160, message = "L'accroche ne doit pas dépasser 160 caractères")
+        String accroche,
+
         String description,
 
         @Size(max = 255, message = "L'URL d'image est trop longue")

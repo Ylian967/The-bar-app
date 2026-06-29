@@ -22,6 +22,7 @@ export interface TaillePrix {
 export interface Cocktail {
   id: number
   nom: string
+  accroche: string | null
   description: string | null
   imageUrl: string | null
   categorieId: number
@@ -67,4 +68,36 @@ export interface LoginResponse {
   email: string
   role: string
   nom: string
+}
+
+export interface CategorieRequest {
+  nom: string
+}
+
+export interface IngredientRequest {
+  nom: string
+}
+
+export interface CocktailRequest {
+  nom: string
+  accroche?: string | null
+  description?: string | null
+  imageUrl?: string | null
+  categorieId: number
+  tailles: TaillePrix[]
+  ingredientIds: number[]
+}
+
+export interface CocktailExterne {
+  idExterne: string
+  nom: string
+  imageUrl: string | null
+  description: string | null
+  ingredients: string[]
+}
+
+export interface ImportCocktailRequest {
+  idExterne: string
+  categorieId: number
+  tailles: TaillePrix[]
 }

@@ -92,7 +92,9 @@ Mail à `laury.bossaert@foreach-academy.fr` avant **02/07/2026 17h**. Soutenance
 | 3 | Init Vue 3 + TS + fondation (types, services API, stores Pinia, router, thème) | ✅ Fait |
 | 3 | Page Carte (client) branchée API | ✅ Fait (vérifiée : photos + données réelles) |
 | 3 | Vues client : fiche, panier, mes commandes | ✅ Fait (parcours complet, build OK) |
-| 3 | Vues barman (/admin) | ⬜ À faire (stubs en place) |
+| 3 | Vues barman (/admin) : login, commandes, détail+avancement, gestion CRUD | ✅ Fait (build OK) |
+| 3 | Champ accroche (back+front) | ✅ Fait |
+| 3 | Tests front + Dockerfile front | ⬜ À faire |
 | 3 | Front (vues barmaker) | ⬜ À faire |
 | 3 | Responsive + tests front | ⬜ À faire |
 | 3 | Dockerfile front | ⬜ À faire |

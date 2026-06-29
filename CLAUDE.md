@@ -118,7 +118,23 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   Vérifié visuellement (responsive, max-width 480). Stubs restants : LoginAdmin, CommandesATraiter,
   DetailCommande, GestionCarte (= partie BARMAN, à faire).
   Build front : `cd front && npm run build` (OK). Dev : `npm run dev` (5173). Le back doit tourner (docker compose).
-  CORS back autorise 5173/4173. RESTE : remplir les 7 vues, tests front, Dockerfile front + ajout au compose.
+  CORS back autorise 5173/4173.
+  ✅ **PARCOURS BARMAN COMPLET** : LoginAdmin (auth JWT), CommandesATraiter (liste + filtres + refresh
+  auto 5s), DetailCommande (steppers 4 étapes + avancer), GestionCarte (onglets via sous-composants
+  OngletCategories/Ingredients/Cocktails = CRUD complet). Sidebar `components/barman/SidebarBarman.vue`.
+  Service catalogue étendu (create/update/delete categories/cocktails/ingredients). Login vérifié visuellement.
+  ✅ Champ **accroche** ajouté end-to-end (entity/dto/mapper/request/service + init.sql re-seedé + front).
+  ⚠️ Détail : données seed SANS accents (accroches/desc en ASCII) — à corriger au "grand tour" final.
+  ⚠️ DetailCommande reconstruit l'URL image depuis le nom (slug) car LigneCommandeDto n'a pas imageUrl.
+  ✅ **Import catalogue externe** : back `CatalogueExterneService` + `CatalogueExterneController`
+  (`GET /api/catalogue-externe?q=`, `POST /api/catalogue-externe/import`, réservé BARMAKER) appelle
+  TheCocktailDB côté serveur, traduit les ingrédients (`TraductionIngredients`), crée les manquants.
+  Front : gestion cocktails refondue → `OngletCocktails` (liste+choix) + `FormulaireCocktail`
+  (création/édition avec **sélecteur d'ingrédients propre** : recherche + puces + créer à la volée)
+  + `ImportCocktail` (recherche → choix → catégorie+prix → import). Testé via API (recherche+import OK).
+  ⚠️ Images des cocktails IMPORTÉS = URL externe TheCocktailDB (pas téléchargées en local) — à
+  améliorer au grand tour si on veut du 100% local (nécessite dir images en volume, pas dans le jar).
+  RESTE Phase 3 : **tests front** + **Dockerfile front** (+ compose) + grand tour de polish final.
 - 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
   `mvn` : `. "$HOME/tools/env.sh"` (définit JAVA_HOME=jdk21 + PATH maven). Build : `cd back && mvn ...`.
   Pas de Postgres local → `ddl-auto=validate` ne se teste qu'en Docker ; tests via H2.

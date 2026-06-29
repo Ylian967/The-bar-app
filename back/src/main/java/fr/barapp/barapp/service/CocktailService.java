@@ -66,6 +66,7 @@ public class CocktailService {
     /** Reporte les données du DTO sur l'entité (création comme modification). */
     private Cocktail appliquer(Cocktail c, CocktailRequest req) {
         c.setNom(req.nom());
+        c.setAccroche(req.accroche());
         c.setDescription(req.description());
         c.setImageUrl(req.imageUrl());
         c.setCategorie(categorieRepository.findById(req.categorieId())

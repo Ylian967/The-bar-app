@@ -23,6 +23,7 @@ public final class CocktailMapper {
         return new CocktailDto(
                 c.getId(),
                 c.getNom(),
+                c.getAccroche(),
                 c.getDescription(),
                 c.getImageUrl(),
                 c.getCategorie().getId(),
