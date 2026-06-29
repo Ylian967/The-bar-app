@@ -68,6 +68,13 @@ async function enregistrer() {
   emit('saved')
 }
 
+async function supprimer() {
+  if (!props.cocktail) return
+  if (!confirm(`Supprimer « ${props.cocktail.nom} » ?`)) return
+  await catalogueService.supprimerCocktail(props.cocktail.id)
+  emit('saved')
+}
+
 onMounted(async () => {
   ;[categories.value, ingredients.value] = await Promise.all([
     catalogueService.listerCategories(),
@@ -130,6 +137,7 @@ onMounted(async () => {
 
     <p v-if="erreur" class="err">{{ erreur }}</p>
     <div class="actions">
+      <button v-if="cocktail" class="btn danger" @click="supprimer">Supprimer</button>
       <button class="btn ghost" @click="emit('cancel')">Annuler</button>
       <button class="btn" @click="enregistrer">Enregistrer</button>
     </div>
@@ -156,4 +164,5 @@ input, select, textarea { display: block; width: 100%; margin-top: 6px; backgrou
 .err { color: var(--coral-d); font-size: 13px; margin-bottom: 10px; }
 .actions { display: flex; gap: 10px; }
 .actions .btn { flex: 1; }
+.btn.danger { background: #ffe4ea; color: var(--coral-d); box-shadow: none; }
 </style>

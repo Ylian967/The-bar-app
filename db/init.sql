@@ -1,6 +1,6 @@
 -- ============================================================
 -- Le Bar'app - script d'initialisation de la base PostgreSQL
--- Genere automatiquement (donnees TheCocktailDB). Images : db/images/
+-- Genere automatiquement (donnees + images TheCocktailDB).
 -- ============================================================
 
 DROP TABLE IF EXISTS ligne_commande, commande, cocktail_taille, cocktail_ingredient, cocktail, ingredient, categorie, utilisateur CASCADE;
@@ -18,18 +18,22 @@ CREATE TABLE categorie (
   nom VARCHAR(80) NOT NULL UNIQUE
 );
 
+CREATE TABLE ingredient (
+  id         BIGSERIAL PRIMARY KEY,
+  nom        VARCHAR(100) NOT NULL UNIQUE,
+  image_url  VARCHAR(255),
+  disponible BOOLEAN NOT NULL DEFAULT true
+);
+
 CREATE TABLE cocktail (
   id           BIGSERIAL PRIMARY KEY,
   nom          VARCHAR(120) NOT NULL,
   accroche     VARCHAR(160),
   description  TEXT,
   image_url    VARCHAR(255),
+  du_jour      BOOLEAN NOT NULL DEFAULT true,
+  favori       BOOLEAN NOT NULL DEFAULT false,
   categorie_id BIGINT NOT NULL REFERENCES categorie(id)
-);
-
-CREATE TABLE ingredient (
-  id  BIGSERIAL PRIMARY KEY,
-  nom VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE cocktail_ingredient (
@@ -66,10 +70,8 @@ CREATE TABLE ligne_commande (
                      CHECK (statut_preparation IN ('PREPARATION_INGREDIENTS','ASSEMBLAGE','DRESSAGE','TERMINEE'))
 );
 
--- ---------- Utilisateur barmaker ----------
--- Cree automatiquement au demarrage de l'application (mot de passe chiffre en BCrypt) :
+-- ---------- Utilisateur barmaker (cree au demarrage par InitialisationDonnees.java) ----------
 --   email : barmaker@barapp.fr   /   mot de passe : Barmaker123
--- Voir InitialisationDonnees.java.
 
 -- ---------- Categories ----------
 INSERT INTO categorie (nom) VALUES
@@ -79,42 +81,41 @@ INSERT INTO categorie (nom) VALUES
   ('Shots'),
   ('Mocktails');
 
--- ---------- Ingredients ----------
-INSERT INTO ingredient (nom) VALUES
-  ('Rhum blanc'),
-  ('Citron vert'),
-  ('Sucre'),
-  ('Menthe'),
-  ('Eau gazeuse'),
-  ('Tequila'),
-  ('Triple sec'),
-  ('Jus de citron vert'),
-  ('Sel'),
-  ('Sucre glace'),
-  ('Gin'),
-  ('Campari'),
-  ('Vermouth rouge'),
-  ('Cachaca'),
-  ('Vodka'),
-  ('Cointreau'),
-  ('Jus de cranberry'),
-  ('Kahlua'),
-  ('Sirop de sucre'),
-  ('Sirop d''orgeat'),
-  ('Sweet & sour'),
-  ('Cerise'),
-  ('Curacao bleu'),
-  ('Limonade'),
-  ('Lait de coco'),
-  ('Ananas'),
-  ('Schnaps peche'),
-  ('Jus d''orange'),
-  ('Grenadine'),
-  ('Baileys'),
-  ('Grand Marnier'),
-  ('Sucre de canne'),
-  ('Jus d''ananas'),
-  ('Glace pilee');
+-- ---------- Ingredients (avec image) ----------
+INSERT INTO ingredient (nom, image_url) VALUES
+  ('Rhum blanc', 'https://www.thecocktaildb.com/images/ingredients/Light%20rum-Small.png'),
+  ('Citron vert', 'https://www.thecocktaildb.com/images/ingredients/Lime-Small.png'),
+  ('Sucre', 'https://www.thecocktaildb.com/images/ingredients/Sugar-Small.png'),
+  ('Menthe', 'https://www.thecocktaildb.com/images/ingredients/Mint-Small.png'),
+  ('Eau gazeuse', 'https://www.thecocktaildb.com/images/ingredients/Soda%20water-Small.png'),
+  ('Tequila', 'https://www.thecocktaildb.com/images/ingredients/Tequila-Small.png'),
+  ('Triple sec', 'https://www.thecocktaildb.com/images/ingredients/Triple%20sec-Small.png'),
+  ('Jus de citron vert', 'https://www.thecocktaildb.com/images/ingredients/Lime%20juice-Small.png'),
+  ('Sel', 'https://www.thecocktaildb.com/images/ingredients/Salt-Small.png'),
+  ('Sucre glace', 'https://www.thecocktaildb.com/images/ingredients/Powdered%20sugar-Small.png'),
+  ('Gin', 'https://www.thecocktaildb.com/images/ingredients/Gin-Small.png'),
+  ('Campari', 'https://www.thecocktaildb.com/images/ingredients/Campari-Small.png'),
+  ('Vermouth rouge', 'https://www.thecocktaildb.com/images/ingredients/Sweet%20Vermouth-Small.png'),
+  ('Cachaca', 'https://www.thecocktaildb.com/images/ingredients/Cachaca-Small.png'),
+  ('Vodka', 'https://www.thecocktaildb.com/images/ingredients/Vodka-Small.png'),
+  ('Cointreau', 'https://www.thecocktaildb.com/images/ingredients/Cointreau-Small.png'),
+  ('Jus de cranberry', 'https://www.thecocktaildb.com/images/ingredients/Cranberry%20juice-Small.png'),
+  ('Kahlua', 'https://www.thecocktaildb.com/images/ingredients/Kahlua-Small.png'),
+  ('Sirop de sucre', 'https://www.thecocktaildb.com/images/ingredients/Sugar%20syrup-Small.png'),
+  ('Sirop d''orgeat', 'https://www.thecocktaildb.com/images/ingredients/Orgeat%20syrup-Small.png'),
+  ('Sweet and sour', 'https://www.thecocktaildb.com/images/ingredients/Sweet%20and%20sour-Small.png'),
+  ('Cerise', 'https://www.thecocktaildb.com/images/ingredients/Cherry-Small.png'),
+  ('Curacao bleu', 'https://www.thecocktaildb.com/images/ingredients/Blue%20Curacao-Small.png'),
+  ('Limonade', 'https://www.thecocktaildb.com/images/ingredients/Lemonade-Small.png'),
+  ('Lait de coco', 'https://www.thecocktaildb.com/images/ingredients/Coconut%20milk-Small.png'),
+  ('Ananas', 'https://www.thecocktaildb.com/images/ingredients/Pineapple-Small.png'),
+  ('Schnaps peche', 'https://www.thecocktaildb.com/images/ingredients/Peach%20schnapps-Small.png'),
+  ('Jus d''orange', 'https://www.thecocktaildb.com/images/ingredients/Orange%20juice-Small.png'),
+  ('Grenadine', 'https://www.thecocktaildb.com/images/ingredients/Grenadine-Small.png'),
+  ('Baileys', 'https://www.thecocktaildb.com/images/ingredients/Baileys%20irish%20cream-Small.png'),
+  ('Grand Marnier', 'https://www.thecocktaildb.com/images/ingredients/Grand%20Marnier-Small.png'),
+  ('Sucre de canne', 'https://www.thecocktaildb.com/images/ingredients/Sugar-Small.png'),
+  ('Jus d''ananas', 'https://www.thecocktaildb.com/images/ingredients/Pineapple%20Juice-Small.png');
 
 -- ---------- Cocktails + tailles (S, M=+1.5, L=+3) + ingredients ----------
 INSERT INTO cocktail (nom, accroche, description, image_url, categorie_id) VALUES ('Mojito', 'Frais & mentholé', 'Le grand classique cubain : rhum blanc, menthe fraiche et citron vert, allonge d''eau gazeuse. Frais et desalterant.', '/images/cocktails/mojito.jpg', (SELECT id FROM categorie WHERE nom='Classiques'));
@@ -200,7 +201,7 @@ INSERT INTO cocktail_ingredient (cocktail_id, ingredient_id) VALUES
   ((SELECT id FROM cocktail WHERE nom='Mai Tai'), (SELECT id FROM ingredient WHERE nom='Rhum blanc')),
   ((SELECT id FROM cocktail WHERE nom='Mai Tai'), (SELECT id FROM ingredient WHERE nom='Sirop d''orgeat')),
   ((SELECT id FROM cocktail WHERE nom='Mai Tai'), (SELECT id FROM ingredient WHERE nom='Triple sec')),
-  ((SELECT id FROM cocktail WHERE nom='Mai Tai'), (SELECT id FROM ingredient WHERE nom='Sweet & sour')),
+  ((SELECT id FROM cocktail WHERE nom='Mai Tai'), (SELECT id FROM ingredient WHERE nom='Sweet and sour')),
   ((SELECT id FROM cocktail WHERE nom='Mai Tai'), (SELECT id FROM ingredient WHERE nom='Cerise'));
 
 INSERT INTO cocktail (nom, accroche, description, image_url, categorie_id) VALUES ('Blue Lagoon', 'Bleu & rafraichissant', 'Bleu lagon : vodka, curacao bleu et limonade. Frais et spectaculaire.', '/images/cocktails/blue_lagoon.jpg', (SELECT id FROM categorie WHERE nom='Signatures'));
@@ -283,5 +284,7 @@ INSERT INTO cocktail_taille (cocktail_id, taille, prix) VALUES
   ((SELECT id FROM cocktail WHERE nom='Virgin Colada'), 'L', 8.00);
 INSERT INTO cocktail_ingredient (cocktail_id, ingredient_id) VALUES
   ((SELECT id FROM cocktail WHERE nom='Virgin Colada'), (SELECT id FROM ingredient WHERE nom='Lait de coco')),
-  ((SELECT id FROM cocktail WHERE nom='Virgin Colada'), (SELECT id FROM ingredient WHERE nom='Jus d''ananas')),
-  ((SELECT id FROM cocktail WHERE nom='Virgin Colada'), (SELECT id FROM ingredient WHERE nom='Glace pilee'));
+  ((SELECT id FROM cocktail WHERE nom='Virgin Colada'), (SELECT id FROM ingredient WHERE nom='Jus d''ananas'));
+
+-- ---------- Favoris (mis en avant cote client) ----------
+UPDATE cocktail SET favori = true WHERE nom IN ('Mojito', 'Margarita', 'Cosmopolitan', 'Espresso Martini');

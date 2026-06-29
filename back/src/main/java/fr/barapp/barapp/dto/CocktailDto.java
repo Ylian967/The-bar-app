@@ -11,6 +11,9 @@ public record CocktailDto(
         String imageUrl,
         Long categorieId,
         String categorie,
+        boolean duJour,
+        boolean favori,
+        boolean realisable,
         List<TailleDto> tailles,
         List<String> ingredients) {
 }

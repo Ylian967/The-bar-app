@@ -25,13 +25,13 @@ class CocktailControllerTest {
 
     private CocktailDto dto() {
         return new CocktailDto(1L, "Mojito", "Frais & mentholé", "Frais", "/images/cocktails/mojito.jpg",
-                1L, "Classiques", List.of(), List.of());
+                1L, "Classiques", true, false, true, List.of(), List.of());
     }
 
     @Test
     void lister() {
-        when(service.lister(null)).thenReturn(List.of(dto()));
-        assertThat(controller.lister(null)).hasSize(1);
+        when(service.lister(null, false)).thenReturn(List.of(dto()));
+        assertThat(controller.lister(null, false)).hasSize(1);
     }
 
     @Test

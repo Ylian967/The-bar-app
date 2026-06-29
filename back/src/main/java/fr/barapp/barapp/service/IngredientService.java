@@ -29,12 +29,21 @@ public class IngredientService {
     public IngredientDto creer(IngredientRequest req) {
         Ingredient i = new Ingredient();
         i.setNom(req.nom());
+        i.setImageUrl(req.imageUrl());
         return versDto(repository.save(i));
     }
 
     public IngredientDto modifier(Long id, IngredientRequest req) {
         Ingredient i = getOuErreur(id);
         i.setNom(req.nom());
+        i.setImageUrl(req.imageUrl());
+        return versDto(repository.save(i));
+    }
+
+    /** Active/désactive le stock d'un ingrédient. */
+    public IngredientDto basculerDisponible(Long id) {
+        Ingredient i = getOuErreur(id);
+        i.setDisponible(!i.isDisponible());
         return versDto(repository.save(i));
     }
 
@@ -48,6 +57,6 @@ public class IngredientService {
     }
 
     private IngredientDto versDto(Ingredient i) {
-        return new IngredientDto(i.getId(), i.getNom());
+        return new IngredientDto(i.getId(), i.getNom(), i.getImageUrl(), i.isDisponible());
     }
 }

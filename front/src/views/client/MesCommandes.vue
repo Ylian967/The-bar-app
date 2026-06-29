@@ -43,7 +43,7 @@ onMounted(charger)
       <button v-if="clientNom" class="refresh" @click="charger">↻</button>
     </div>
 
-    <p v-if="!clientNom" class="etat">Passez une commande pour suivre sa préparation ici. 🍹</p>
+    <p v-if="!clientNom" class="etat">Passez une commande pour suivre sa préparation ici.</p>
 
     <template v-else>
       <div class="tabs">

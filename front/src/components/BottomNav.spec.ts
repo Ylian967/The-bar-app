@@ -8,7 +8,7 @@ import type { Cocktail } from '../types/models'
 const stubs = { RouterLink: { template: '<a><slot /></a>' } }
 const cocktail: Cocktail = {
   id: 1, nom: 'X', accroche: null, description: null, imageUrl: null,
-  categorieId: 1, categorie: 'C', tailles: [], ingredients: [],
+  categorieId: 1, categorie: 'C', duJour: true, favori: false, realisable: true, tailles: [], ingredients: [],
 }
 
 describe('BottomNav', () => {

@@ -43,13 +43,13 @@ class IngredientServiceTest {
     @Test
     void creer_enregistre_l_ingredient() {
         when(repository.save(any(Ingredient.class))).thenAnswer(i -> i.getArgument(0));
-        assertThat(service.creer(new IngredientRequest("Citron vert")).nom()).isEqualTo("Citron vert");
+        assertThat(service.creer(new IngredientRequest("Citron vert", null)).nom()).isEqualTo("Citron vert");
     }
 
     @Test
     void modifier_inexistant_leve_une_erreur() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
-        assertThatThrownBy(() -> service.modifier(99L, new IngredientRequest("X")))
+        assertThatThrownBy(() -> service.modifier(99L, new IngredientRequest("X", null)))
                 .isInstanceOf(RessourceIntrouvableException.class);
     }
 

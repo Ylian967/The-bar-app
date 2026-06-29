@@ -21,10 +21,23 @@ public class CocktailController {
         this.service = service;
     }
 
-    /** Liste tous les cocktails, ou ceux d'une catégorie via ?categorieId=. */
+    /** Liste les cocktails. ?categorieId= filtre par catégorie ; ?duJour=true ne renvoie que la carte du jour. */
     @GetMapping
-    public List<CocktailDto> lister(@RequestParam(required = false) Long categorieId) {
-        return service.lister(categorieId);
+    public List<CocktailDto> lister(@RequestParam(required = false) Long categorieId,
+                                    @RequestParam(required = false, defaultValue = "false") boolean duJour) {
+        return service.lister(categorieId, duJour);
+    }
+
+    /** Active/désactive « servi » (barmaker). */
+    @PatchMapping("/{id}/du-jour")
+    public CocktailDto basculerDuJour(@PathVariable Long id) {
+        return service.basculerDuJour(id);
+    }
+
+    /** Active/désactive « favori / mis en avant » (barmaker). */
+    @PatchMapping("/{id}/favori")
+    public CocktailDto basculerFavori(@PathVariable Long id) {
+        return service.basculerFavori(id);
     }
 
     @GetMapping("/{id}")

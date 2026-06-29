@@ -63,13 +63,13 @@ class CocktailServiceTest {
     @Test
     void lister_sans_filtre_renvoie_tout() {
         when(cocktailRepository.findAll()).thenReturn(List.of(mojito()));
-        assertThat(service.lister(null)).hasSize(1);
+        assertThat(service.lister(null, false)).hasSize(1);
     }
 
     @Test
     void lister_par_categorie() {
         when(cocktailRepository.findByCategorieId(1L)).thenReturn(List.of(mojito()));
-        assertThat(service.lister(1L)).hasSize(1);
+        assertThat(service.lister(1L, false)).hasSize(1);
     }
 
     @Test

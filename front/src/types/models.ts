@@ -12,6 +12,8 @@ export interface Categorie {
 export interface Ingredient {
   id: number
   nom: string
+  imageUrl: string | null
+  disponible: boolean
 }
 
 export interface TaillePrix {
@@ -27,6 +29,9 @@ export interface Cocktail {
   imageUrl: string | null
   categorieId: number
   categorie: string
+  duJour: boolean
+  favori: boolean
+  realisable: boolean
   tailles: TaillePrix[]
   ingredients: string[]
 }
@@ -76,6 +81,7 @@ export interface CategorieRequest {
 
 export interface IngredientRequest {
   nom: string
+  imageUrl?: string | null
 }
 
 export interface CocktailRequest {

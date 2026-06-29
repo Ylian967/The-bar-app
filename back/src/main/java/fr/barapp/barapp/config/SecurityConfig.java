@@ -48,8 +48,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,
                                 "/api/categories/**", "/api/cocktails/**", "/api/ingredients/**").permitAll()
                         // Barmaker uniquement (avant les règles client plus larges sur /commandes)
-                        .requestMatchers(HttpMethod.GET, "/api/commandes/a-traiter").hasRole("BARMAKER")
-                        .requestMatchers(HttpMethod.PATCH, "/api/commandes/**").hasRole("BARMAKER")
+                        .requestMatchers(HttpMethod.GET, "/api/commandes/a-traiter", "/api/commandes/terminees").hasRole("BARMAKER")
+                        .requestMatchers(HttpMethod.PATCH, "/api/commandes/**", "/api/cocktails/**", "/api/ingredients/**").hasRole("BARMAKER")
                         // Client : passer une commande et la suivre
                         .requestMatchers(HttpMethod.POST, "/api/commandes").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/commandes/**").permitAll()

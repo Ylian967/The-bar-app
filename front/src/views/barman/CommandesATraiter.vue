@@ -10,18 +10,19 @@ const router = useRouter()
 const auth = useAuthStore()
 
 const commandes = ref<Commande[]>([])
-const filtre = ref<'toutes' | 'COMMANDEE' | 'EN_PREPARATION'>('toutes')
+const terminees = ref<Commande[]>([])
+const filtre = ref<'COMMANDEE' | 'EN_PREPARATION' | 'TERMINEE'>('COMMANDEE')
 let timer: number | undefined
 
 const affichees = computed(() =>
-  filtre.value === 'toutes' ? commandes.value : commandes.value.filter((c) => c.statut === filtre.value),
+  filtre.value === 'TERMINEE' ? terminees.value : commandes.value.filter((c) => c.statut === filtre.value),
 )
 
 function badge(s: StatutCommande): string {
-  return s === 'EN_PREPARATION' ? 'prep' : 'cmd'
+  return s === 'TERMINEE' ? 'done' : s === 'EN_PREPARATION' ? 'prep' : 'cmd'
 }
 function libelle(s: StatutCommande): string {
-  return s === 'EN_PREPARATION' ? 'En prépa' : 'Commandée'
+  return s === 'TERMINEE' ? 'Terminée' : s === 'EN_PREPARATION' ? 'En prépa' : 'Commandée'
 }
 function heure(iso: string): string {
   return new Date(iso).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
@@ -31,7 +32,10 @@ function nbCocktails(c: Commande): number {
 }
 
 async function charger() {
-  commandes.value = await commandeService.aTraiter()
+  ;[commandes.value, terminees.value] = await Promise.all([
+    commandeService.aTraiter(),
+    commandeService.terminees(),
+  ])
 }
 
 function deconnexion() {
@@ -63,12 +67,12 @@ onUnmounted(() => clearInterval(timer))
       </header>
 
       <div class="tabs">
-        <button class="t" :class="{ on: filtre === 'toutes' }" @click="filtre = 'toutes'">Toutes</button>
         <button class="t" :class="{ on: filtre === 'COMMANDEE' }" @click="filtre = 'COMMANDEE'">À faire</button>
         <button class="t" :class="{ on: filtre === 'EN_PREPARATION' }" @click="filtre = 'EN_PREPARATION'">En cours</button>
+        <button class="t" :class="{ on: filtre === 'TERMINEE' }" @click="filtre = 'TERMINEE'">Terminées</button>
       </div>
 
-      <p v-if="affichees.length === 0" class="etat">Aucune commande à traiter pour le moment. 🍸</p>
+      <p v-if="affichees.length === 0" class="etat">Aucune commande dans cet onglet.</p>
 
       <div class="grid">
         <article v-for="c in affichees" :key="c.id" class="tcard" @click="router.push({ name: 'detail-commande', params: { id: c.id } })">
@@ -76,9 +80,15 @@ onUnmounted(() => clearInterval(timer))
             <span class="id">#{{ c.id }}</span>
             <span class="badge" :class="badge(c.statut)">{{ libelle(c.statut) }}</span>
           </div>
-          <div class="li">🕘 {{ heure(c.dateCreation) }} · {{ nbCocktails(c) }} cocktail(s)</div>
+          <div class="li">
+            <svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+            {{ heure(c.dateCreation) }} · {{ nbCocktails(c) }} cocktail(s)
+          </div>
           <div class="li noms">{{ c.lignes.map((l) => l.cocktailNom).join(' · ') }}</div>
-          <div class="li client">👤 {{ c.clientNom }}</div>
+          <div class="li client">
+            <svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4" /><path d="M5 20c1.4-3.6 4-5.2 7-5.2s5.6 1.6 7 5.2" /></svg>
+            {{ c.clientNom }}
+          </div>
           <div class="go">Traiter →</div>
         </article>
       </div>
@@ -103,7 +113,8 @@ onUnmounted(() => clearInterval(timer))
 .tcard:hover { transform: translateY(-2px); }
 .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .id { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; }
-.li { font-size: 13px; color: var(--ink-soft); margin: 3px 0; }
+.li { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-soft); margin: 3px 0; }
 .li.noms { color: var(--ink); }
+.mi { width: 14px; height: 14px; flex-shrink: 0; }
 .go { margin-top: 14px; background: linear-gradient(135deg, var(--coral), var(--coral-d)); color: #fff; text-align: center; padding: 11px; border-radius: 14px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; }
 </style>

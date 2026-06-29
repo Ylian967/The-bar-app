@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface CocktailRepository extends JpaRepository<Cocktail, Long> {
     List<Cocktail> findByCategorieId(Long categorieId);
+
+    List<Cocktail> findByDuJourTrue();
+
+    List<Cocktail> findByCategorieIdAndDuJourTrue(Long categorieId);
 }

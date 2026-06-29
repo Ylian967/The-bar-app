@@ -5,6 +5,7 @@ import fr.barapp.barapp.dto.CocktailRequest;
 import fr.barapp.barapp.dto.TailleRequest;
 import fr.barapp.barapp.entity.Cocktail;
 import fr.barapp.barapp.entity.CocktailTaille;
+import fr.barapp.barapp.entity.Ingredient;
 import fr.barapp.barapp.exception.RessourceIntrouvableException;
 import fr.barapp.barapp.mapper.CocktailMapper;
 import fr.barapp.barapp.repository.CategorieRepository;
@@ -34,11 +35,37 @@ public class CocktailService {
     }
 
     @Transactional(readOnly = true)
-    public List<CocktailDto> lister(Long categorieId) {
-        List<Cocktail> cocktails = (categorieId == null)
-                ? cocktailRepository.findAll()
-                : cocktailRepository.findByCategorieId(categorieId);
-        return cocktails.stream().map(CocktailMapper::versDto).toList();
+    public List<CocktailDto> lister(Long categorieId, boolean duJourSeulement) {
+        List<Cocktail> cocktails;
+        if (duJourSeulement) {
+            cocktails = (categorieId == null)
+                    ? cocktailRepository.findByDuJourTrue()
+                    : cocktailRepository.findByCategorieIdAndDuJourTrue(categorieId);
+        } else {
+            cocktails = (categorieId == null)
+                    ? cocktailRepository.findAll()
+                    : cocktailRepository.findByCategorieId(categorieId);
+        }
+        // Côté client (carte du jour), on ne propose que les cocktails réalisables (ingrédients en stock).
+        java.util.stream.Stream<Cocktail> flux = cocktails.stream();
+        if (duJourSeulement) {
+            flux = flux.filter(c -> c.getIngredients().stream().allMatch(Ingredient::isDisponible));
+        }
+        return flux.map(CocktailMapper::versDto).toList();
+    }
+
+    /** Active/désactive « servi » (visible des clients). */
+    public CocktailDto basculerDuJour(Long id) {
+        Cocktail c = getOuErreur(id);
+        c.setDuJour(!c.isDuJour());
+        return CocktailMapper.versDto(cocktailRepository.save(c));
+    }
+
+    /** Active/désactive « favori » (mis en avant côté client). */
+    public CocktailDto basculerFavori(Long id) {
+        Cocktail c = getOuErreur(id);
+        c.setFavori(!c.isFavori());
+        return CocktailMapper.versDto(cocktailRepository.save(c));
     }
 
     @Transactional(readOnly = true)

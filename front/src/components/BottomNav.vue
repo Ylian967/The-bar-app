@@ -26,17 +26,17 @@ const panier = usePanierStore()
 <style scoped>
 .bnav {
   position: fixed;
-  bottom: 0;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
+  width: calc(100% - 36px);
+  max-width: 420px;
   display: flex;
   justify-content: space-around;
   background: #fff;
-  padding: 12px 8px calc(12px + env(safe-area-inset-bottom));
-  box-shadow: 0 -8px 24px rgba(36, 16, 70, 0.1);
-  border-radius: 24px 24px 0 0;
+  padding: 13px 8px;
+  box-shadow: 0 14px 34px rgba(36, 16, 70, 0.2);
+  border-radius: 24px;
 }
 .b {
   display: flex;

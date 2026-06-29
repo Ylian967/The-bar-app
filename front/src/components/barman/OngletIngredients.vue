@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { catalogueService } from '../../services/catalogue'
+import { imageUrl } from '../../services/http'
 import type { Ingredient } from '../../types/models'
 
 const ingredients = ref<Ingredient[]>([])
@@ -15,6 +16,10 @@ async function ajouter() {
   nouveau.value = ''
   charger()
 }
+async function basculer(i: Ingredient) {
+  await catalogueService.basculerDisponible(i.id)
+  charger()
+}
 async function supprimer(i: Ingredient) {
   if (!confirm(`Supprimer l'ingrédient « ${i.nom} » ?`)) return
   await catalogueService.supprimerIngredient(i.id)
@@ -26,24 +31,42 @@ onMounted(charger)
 
 <template>
   <div>
-    <div class="ajout">
+    <p class="aide">Décochez un ingrédient en rupture : les cocktails qui l'utilisent ne seront plus proposés.</p>
+    <div class="entete">
       <input v-model="nouveau" placeholder="Nouvel ingrédient…" @keyup.enter="ajouter" />
       <button class="add" @click="ajouter">+ Ajouter</button>
     </div>
-    <ul class="liste">
-      <li v-for="i in ingredients" :key="i.id">
-        <span>{{ i.nom }}</span>
-        <button class="del" @click="supprimer(i)" title="Supprimer">🗑️</button>
-      </li>
-    </ul>
+
+    <div class="grid">
+      <div v-for="i in ingredients" :key="i.id" class="card" :class="{ rupture: !i.disponible }">
+        <img v-if="i.imageUrl" :src="imageUrl(i.imageUrl)" :alt="i.nom" />
+        <div v-else class="ph">{{ i.nom.charAt(0) }}</div>
+        <div class="nom">{{ i.nom }}</div>
+        <button class="stock" :class="{ on: i.disponible }" @click="basculer(i)">
+          {{ i.disponible ? 'En stock' : 'Rupture' }}
+        </button>
+        <button class="del" title="Supprimer" @click="supprimer(i)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13" /></svg>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.ajout { display: flex; gap: 10px; margin-bottom: 18px; }
-.ajout input { flex: 1; background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; font-family: inherit; font-size: 14px; }
+.aide { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; }
+.entete { display: flex; gap: 10px; margin-bottom: 18px; max-width: 480px; }
+.entete input { flex: 1; background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; font-family: inherit; font-size: 14px; }
 .add { background: linear-gradient(135deg, var(--coral), var(--mango)); color: #fff; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; padding: 0 18px; border-radius: 14px; }
-.liste { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
-.liste li { display: flex; justify-content: space-between; align-items: center; background: #fff; border-radius: 16px; padding: 12px 16px; box-shadow: var(--shadow-sm); font-weight: 600; font-size: 14px; }
-.del { background: #ffe4ea; width: 32px; height: 32px; border-radius: 10px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.card { background: #fff; border-radius: 18px; box-shadow: var(--shadow-sm); padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+.card.rupture { opacity: 0.6; }
+.card img, .card .ph { width: 56px; height: 56px; border-radius: 14px; object-fit: cover; }
+.card .ph { background: var(--cream); display: grid; place-items: center; font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--ink-soft); font-size: 22px; }
+.card .nom { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; text-align: center; }
+.stock { width: 100%; border-radius: 999px; padding: 7px; font-weight: 700; font-size: 12px; background: #ffe4ea; color: var(--coral-d); }
+.stock.on { background: #d7f6f0; color: var(--teal-d); }
+.del { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 9px; background: var(--cream); color: var(--coral-d); display: grid; place-items: center; }
+.del svg { width: 14px; height: 14px; }
 </style>

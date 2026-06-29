@@ -44,7 +44,7 @@ onMounted(charger)
           <button class="back" @click="router.push({ name: 'commandes-a-traiter' })">‹</button>
           <div>
             <h2>Commande #{{ commande.id }}</h2>
-            <p class="sub">👤 {{ commande.clientNom }}</p>
+            <p class="sub">{{ commande.clientNom }}</p>
           </div>
         </div>
         <span class="badge" :class="commande.statut === 'TERMINEE' ? 'done' : commande.statut === 'EN_PREPARATION' ? 'prep' : 'cmd'">
@@ -77,7 +77,10 @@ onMounted(charger)
         <div v-else class="fini">✓ Cocktail prêt</div>
       </article>
 
-      <div v-if="toutTermine" class="banner">✅ Commande terminée — prête à servir !</div>
+      <div v-if="toutTermine" class="banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M8 12l3 3 5-5" /></svg>
+        Commande terminée — prête à servir !
+      </div>
     </main>
   </div>
 </template>
@@ -106,4 +109,5 @@ onMounted(charger)
 .next { margin-top: 12px; width: 100%; background: var(--ink); color: #fff; padding: 11px; border-radius: 13px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; }
 .fini { margin-top: 12px; text-align: center; color: var(--teal-d); font-weight: 700; font-size: 13px; }
 .banner { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, var(--teal), #5bd86e); color: #fff; text-align: center; padding: 16px; border-radius: 18px; font-family: 'Poppins', sans-serif; font-weight: 700; box-shadow: 0 12px 24px rgba(0, 194, 168, 0.4); }
+.banner svg { width: 20px; height: 20px; }
 </style>

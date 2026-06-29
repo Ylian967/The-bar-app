@@ -15,7 +15,7 @@ const liste = computed(() =>
   cocktails.value.filter((c) => c.nom.toLowerCase().includes(recherche.value.toLowerCase())),
 )
 const duJour = computed(() =>
-  categorieActive.value === null && recherche.value === '' ? cocktails.value.slice(0, 3) : [],
+  categorieActive.value === null && recherche.value === '' ? cocktails.value.filter((c) => c.favori) : [],
 )
 
 function prixMin(c: Cocktail): number {
@@ -24,7 +24,7 @@ function prixMin(c: Cocktail): number {
 
 async function charger() {
   chargement.value = true
-  cocktails.value = await catalogueService.listerCocktails(categorieActive.value ?? undefined)
+  cocktails.value = await catalogueService.listerCocktails(categorieActive.value ?? undefined, true)
   chargement.value = false
 }
 
@@ -70,7 +70,7 @@ onMounted(async () => {
 
     <template v-else>
       <section v-if="duJour.length">
-        <div class="row-h"><h3>Cocktails du jour</h3><a>Tout voir</a></div>
+        <div class="row-h"><h3>Cocktails du jour</h3></div>
         <div class="hcards">
           <RouterLink
             v-for="c in duJour"

@@ -13,4 +13,7 @@ public interface CommandeRepository extends JpaRepository<Commande, Long> {
 
     /** Commandes d'un client (par prénom / table), plus récentes d'abord. */
     List<Commande> findByClientNomIgnoreCaseOrderByDateCreationDesc(String clientNom);
+
+    /** Commandes ayant un statut donné (ex : terminées), plus récentes d'abord. */
+    List<Commande> findByStatutOrderByDateCreationDesc(StatutCommande statut);
 }

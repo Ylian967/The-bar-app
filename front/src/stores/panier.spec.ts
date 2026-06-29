@@ -5,7 +5,7 @@ import type { Cocktail } from '../types/models'
 
 const mojito: Cocktail = {
   id: 1, nom: 'Mojito', accroche: null, description: null, imageUrl: null,
-  categorieId: 1, categorie: 'Classiques', tailles: [], ingredients: [],
+  categorieId: 1, categorie: 'Classiques', duJour: true, favori: false, realisable: true, tailles: [], ingredients: [],
 }
 
 describe('store panier', () => {

@@ -25,21 +25,21 @@ class IngredientControllerTest {
 
     @Test
     void lister() {
-        when(service.lister()).thenReturn(List.of(new IngredientDto(1L, "Menthe")));
+        when(service.lister()).thenReturn(List.of(new IngredientDto(1L, "Menthe", null, true)));
         assertThat(controller.lister()).hasSize(1);
     }
 
     @Test
     void creer_renvoie_201() {
-        IngredientRequest req = new IngredientRequest("Menthe");
-        when(service.creer(req)).thenReturn(new IngredientDto(1L, "Menthe"));
+        IngredientRequest req = new IngredientRequest("Menthe", null);
+        when(service.creer(req)).thenReturn(new IngredientDto(1L, "Menthe", null, true));
         assertThat(controller.creer(req).getStatusCode().value()).isEqualTo(201);
     }
 
     @Test
     void modifier() {
-        IngredientRequest req = new IngredientRequest("Citron");
-        when(service.modifier(1L, req)).thenReturn(new IngredientDto(1L, "Citron"));
+        IngredientRequest req = new IngredientRequest("Citron", null);
+        when(service.modifier(1L, req)).thenReturn(new IngredientDto(1L, "Citron", null, true));
         assertThat(controller.modifier(1L, req).nom()).isEqualTo("Citron");
     }
 

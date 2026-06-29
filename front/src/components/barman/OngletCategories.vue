@@ -33,7 +33,9 @@ onMounted(charger)
     <ul class="liste">
       <li v-for="c in categories" :key="c.id">
         <span>{{ c.nom }}</span>
-        <button class="del" @click="supprimer(c)" title="Supprimer">🗑️</button>
+        <button class="del" @click="supprimer(c)" title="Supprimer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13" /></svg>
+        </button>
       </li>
     </ul>
   </div>
@@ -45,5 +47,6 @@ onMounted(charger)
 .add { background: linear-gradient(135deg, var(--coral), var(--mango)); color: #fff; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; padding: 0 18px; border-radius: 14px; }
 .liste { list-style: none; display: flex; flex-direction: column; gap: 10px; max-width: 520px; }
 .liste li { display: flex; justify-content: space-between; align-items: center; background: #fff; border-radius: 16px; padding: 14px 18px; box-shadow: var(--shadow-sm); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; }
-.del { background: #ffe4ea; width: 34px; height: 34px; border-radius: 10px; }
+.del { background: #ffe4ea; color: var(--coral-d); width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; }
+.del svg { width: 16px; height: 16px; }
 </style>

@@ -20,6 +20,7 @@ public final class CocktailMapper {
         List<String> ingredients = c.getIngredients().stream()
                 .map(Ingredient::getNom)
                 .toList();
+        boolean realisable = c.getIngredients().stream().allMatch(Ingredient::isDisponible);
         return new CocktailDto(
                 c.getId(),
                 c.getNom(),
@@ -28,6 +29,9 @@ public final class CocktailMapper {
                 c.getImageUrl(),
                 c.getCategorie().getId(),
                 c.getCategorie().getNom(),
+                c.isDuJour(),
+                c.isFavori(),
+                realisable,
                 tailles,
                 ingredients);
     }

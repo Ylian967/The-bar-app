@@ -36,6 +36,12 @@ public class IngredientController {
         return service.modifier(id, req);
     }
 
+    /** Active/désactive le stock d'un ingrédient (barmaker). */
+    @PatchMapping("/{id}/disponible")
+    public IngredientDto basculerDisponible(@PathVariable Long id) {
+        return service.basculerDisponible(id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> supprimer(@PathVariable Long id) {
         service.supprimer(id);

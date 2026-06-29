@@ -15,6 +15,9 @@ export const commandeService = {
   aTraiter() {
     return http.get<Commande[]>('/api/commandes/a-traiter').then((r) => r.data)
   },
+  terminees() {
+    return http.get<Commande[]>('/api/commandes/terminees').then((r) => r.data)
+  },
   avancerLigne(commandeId: number, ligneId: number) {
     return http
       .patch<Commande>(`/api/commandes/${commandeId}/lignes/${ligneId}/avancer`)

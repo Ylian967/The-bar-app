@@ -142,6 +142,24 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   ➡️ APP COMPLÈTE & DÉPLOYABLE. RESTE : le "grand tour" de polish (accents data, images importées en
   local, ajustements maquette), puis **Phase 4** (PowerPoint + répétition démo 15 min, soutenance 03/07).
   Dev front local (HMR) : `cd front && npm run dev` (port 5173) — mais en Docker le front est déjà servi sur 5173.
+  ✅ RETOURS UTILISATEUR (lot 1) traités : champ **`du_jour`** sur cocktail (le client ne voit que
+  les cocktails sélectionnés ; barman bascule via PATCH `/api/cocktails/{id}/du-jour` ; client appelle
+  `?duJour=true`). **Nav bar flottante**. « Tout voir » retiré. Bouton **« Continuer ma commande »** en
+  haut du panier. **Sélecteur de table** (Comptoir + Table 1–10) au lieu de saisie libre. Onglet
+  **« Terminées »** côté barman (`GET /api/commandes/terminees`). **Tous les emojis retirés** → icônes SVG.
+  Sélecteur d'ingrédients propre (puces + recherche + créer). Import catalogue avec liste de suggestions.
+  ✅ RETOURS (lot 2) — refonte gestion barman : OngletCocktails = **grille de cartes de TOUS les cocktails**,
+  3 boutons/carte : **Servir** (toggle duJour = visible client), **Modifier** (ouvre form en MODALE, avec
+  bouton Supprimer dedans), **Favori** (toggle favori). Cartes non servies grisées + badge « Masqué ».
+  Nouveau champ back **`favori`** (entity/dto/mapper/init.sql + PATCH `/api/cocktails/{id}/favori`).
+  Client : section « Cocktails du jour » = cocktails **favori** ; « Tous les cocktails » = servis (duJour).
+  Seed : Mojito/Margarita/Cosmopolitan/Espresso Martini en favori par défaut.
+  ✅ RETOURS (lot 3) — GESTION DE STOCK : Ingredient a `disponible` (en stock) + `image_url`
+   (images TheCocktailDB `.../ingredients/{EN}-Small.png`, générées au seed + à l'import via nom anglais).
+   Cocktail expose `realisable` (computed = tous ingrédients disponibles). Client (`?duJour=true`) ne
+   reçoit QUE les cocktails réalisables. Barman : OngletIngredients = grille cartes avec image + toggle
+   « En stock / Rupture » (PATCH `/api/ingredients/{id}/disponible`). OngletCocktails : carte non réalisable
+   = badge rouge « Ingrédient manquant », bouton Servir désactivé. Vérifié API : couper le rhum → 16→12.
 - 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
   `mvn` : `. "$HOME/tools/env.sh"` (définit JAVA_HOME=jdk21 + PATH maven). Build : `cd back && mvn ...`.
   Pas de Postgres local → `ddl-auto=validate` ne se teste qu'en Docker ; tests via H2.

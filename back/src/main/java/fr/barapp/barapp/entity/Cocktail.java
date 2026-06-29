@@ -35,6 +35,14 @@ public class Cocktail {
     @Column(name = "image_url", length = 255)
     private String imageUrl;
 
+    /** Servi : sélectionné par le barmaker, visible des clients. */
+    @Column(name = "du_jour", nullable = false)
+    private boolean duJour = true;
+
+    /** Mis en avant dans la section « Cocktails du jour » côté client. */
+    @Column(nullable = false)
+    private boolean favori = false;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;

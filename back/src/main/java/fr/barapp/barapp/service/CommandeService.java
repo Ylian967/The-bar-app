@@ -56,6 +56,13 @@ public class CommandeService {
                 .stream().map(CommandeMapper::versDto).toList();
     }
 
+    /** Commandes terminées (historique du barman). */
+    @Transactional(readOnly = true)
+    public List<CommandeDto> terminees() {
+        return commandeRepository.findByStatutOrderByDateCreationDesc(StatutCommande.TERMINEE)
+                .stream().map(CommandeMapper::versDto).toList();
+    }
+
     /** Commandes d'un client (« Mes commandes »). */
     @Transactional(readOnly = true)
     public List<CommandeDto> parClient(String clientNom) {

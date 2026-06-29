@@ -38,6 +38,12 @@ public class CommandeController {
         return service.aTraiter();
     }
 
+    /** Historique des commandes terminées (barman). */
+    @GetMapping("/terminees")
+    public List<CommandeDto> terminees() {
+        return service.terminees();
+    }
+
     /** « Mes commandes » d'un client (par prénom / table). */
     @GetMapping
     public List<CommandeDto> parClient(@RequestParam String clientNom) {

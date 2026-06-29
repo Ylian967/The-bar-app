@@ -27,9 +27,17 @@ export const catalogueService = {
   },
 
   // --- Cocktails ---
-  listerCocktails(categorieId?: number) {
-    const params = categorieId ? { categorieId } : undefined
+  listerCocktails(categorieId?: number, duJour?: boolean) {
+    const params: Record<string, unknown> = {}
+    if (categorieId) params.categorieId = categorieId
+    if (duJour) params.duJour = true
     return http.get<Cocktail[]>('/api/cocktails', { params }).then((r) => r.data)
+  },
+  basculerDuJour(id: number) {
+    return http.patch<Cocktail>(`/api/cocktails/${id}/du-jour`).then((r) => r.data)
+  },
+  basculerFavori(id: number) {
+    return http.patch<Cocktail>(`/api/cocktails/${id}/favori`).then((r) => r.data)
   },
   trouverCocktail(id: number) {
     return http.get<Cocktail>(`/api/cocktails/${id}`).then((r) => r.data)
@@ -56,6 +64,9 @@ export const catalogueService = {
   },
   supprimerIngredient(id: number) {
     return http.delete(`/api/ingredients/${id}`)
+  },
+  basculerDisponible(id: number) {
+    return http.patch<Ingredient>(`/api/ingredients/${id}/disponible`).then((r) => r.data)
   },
 
   // --- Catalogue externe (TheCocktailDB) ---

@@ -94,8 +94,16 @@ public class CatalogueExterneService {
         c.setDescription(description(d));
         c.setImageUrl(texte(d, "strDrinkThumb"));
         c.setCategorie(categorie);
-        for (String nom : ingredients(d)) {
-            c.getIngredients().add(getOuCreerIngredient(nom));
+        for (int i = 1; i <= 15; i++) {
+            String v = texte(d, "strIngredient" + i);
+            if (v == null || v.isBlank()) {
+                continue;
+            }
+            String anglais = v.trim();
+            String fr = TraductionIngredients.traduire(anglais);
+            if (fr != null) {
+                c.getIngredients().add(getOuCreerIngredient(fr, anglais));
+            }
         }
         for (TailleRequest t : req.tailles()) {
             CocktailTaille ct = new CocktailTaille();
@@ -107,10 +115,12 @@ public class CatalogueExterneService {
         return CocktailMapper.versDto(cocktailRepository.save(c));
     }
 
-    private Ingredient getOuCreerIngredient(String nom) {
-        return ingredientRepository.findByNomIgnoreCase(nom).orElseGet(() -> {
+    private Ingredient getOuCreerIngredient(String fr, String anglais) {
+        return ingredientRepository.findByNomIgnoreCase(fr).orElseGet(() -> {
             Ingredient i = new Ingredient();
-            i.setNom(nom);
+            i.setNom(fr);
+            i.setImageUrl("https://www.thecocktaildb.com/images/ingredients/"
+                    + encode(anglais).replace("+", "%20") + "-Small.png");
             return ingredientRepository.save(i);
         });
     }

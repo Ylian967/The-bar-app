@@ -19,4 +19,11 @@ public class Ingredient {
 
     @Column(nullable = false, unique = true, length = 100)
     private String nom;
+
+    @Column(name = "image_url", length = 255)
+    private String imageUrl;
+
+    /** En stock : si false, les cocktails qui l'utilisent ne sont plus réalisables. */
+    @Column(nullable = false)
+    private boolean disponible = true;
 }
