@@ -134,7 +134,14 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
   + `ImportCocktail` (recherche → choix → catégorie+prix → import). Testé via API (recherche+import OK).
   ⚠️ Images des cocktails IMPORTÉS = URL externe TheCocktailDB (pas téléchargées en local) — à
   améliorer au grand tour si on veut du 100% local (nécessite dir images en volume, pas dans le jar).
-  RESTE Phase 3 : **tests front** + **Dockerfile front** (+ compose) + grand tour de polish final.
+  ✅ **Tests front** (Vitest) : 9 tests (stores panier/auth + composant BottomNav). `cd front && npm test`.
+  ✅ **Dockerfile front** (multi-stage node build + nginx) + nginx.conf (sert SPA + proxy /api et /images
+  vers back → même origine, pas de CORS). Front build avec VITE_API_URL="" (URLs relatives).
+  ✅ **`docker compose up --build` lance TOUT** (db+back+front) ; front=5173, back=8080. Vérifié OK.
+  ✅ **README** complet (lancement, compte démo, tests, structure).
+  ➡️ APP COMPLÈTE & DÉPLOYABLE. RESTE : le "grand tour" de polish (accents data, images importées en
+  local, ajustements maquette), puis **Phase 4** (PowerPoint + répétition démo 15 min, soutenance 03/07).
+  Dev front local (HMR) : `cd front && npm run dev` (port 5173) — mais en Docker le front est déjà servi sur 5173.
 - 🔧 TOOLCHAIN (Java/Maven pas en système) : installés en user-space dans `~/tools`. Avant tout
   `mvn` : `. "$HOME/tools/env.sh"` (définit JAVA_HOME=jdk21 + PATH maven). Build : `cd back && mvn ...`.
   Pas de Postgres local → `ddl-auto=validate` ne se teste qu'en Docker ; tests via H2.

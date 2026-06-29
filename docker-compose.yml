@@ -32,5 +32,13 @@ services:
     ports:
       - "8080:8080"
 
+  front:
+    build: ./front
+    container_name: barapp-front
+    depends_on:
+      - back
+    ports:
+      - "5173:80"
+
 volumes:
   barapp_db:

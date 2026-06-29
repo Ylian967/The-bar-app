@@ -94,7 +94,9 @@ Mail à `laury.bossaert@foreach-academy.fr` avant **02/07/2026 17h**. Soutenance
 | 3 | Vues client : fiche, panier, mes commandes | ✅ Fait (parcours complet, build OK) |
 | 3 | Vues barman (/admin) : login, commandes, détail+avancement, gestion CRUD | ✅ Fait (build OK) |
 | 3 | Champ accroche (back+front) | ✅ Fait |
-| 3 | Tests front + Dockerfile front | ⬜ À faire |
+| 3 | Tests front (Vitest, 9 tests) | ✅ Fait |
+| 3 | Dockerfile front + compose complet | ✅ Fait — `docker compose up` lance tout (db+back+front) |
+| 4 | README de lancement | ✅ Fait |
 | 3 | Front (vues barmaker) | ⬜ À faire |
 | 3 | Responsive + tests front | ⬜ À faire |
 | 3 | Dockerfile front | ⬜ À faire |
