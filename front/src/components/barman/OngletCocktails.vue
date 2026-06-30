@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { catalogueService } from '../../services/catalogue'
 import { imageUrl } from '../../services/http'
 import type { Cocktail } from '../../types/models'
@@ -11,6 +11,15 @@ type Mode = 'aucun' | 'choix' | 'creer' | 'editer' | 'import'
 const cocktails = ref<Cocktail[]>([])
 const mode = ref<Mode>('aucun')
 const cocktailEdite = ref<Cocktail | null>(null)
+const recherche = ref('')
+const filtreFavoris = ref(false)
+
+const listeFiltree = computed(() => {
+  const q = recherche.value.trim().toLowerCase()
+  return cocktails.value.filter(
+    (c) => c.nom.toLowerCase().includes(q) && (!filtreFavoris.value || c.favori),
+  )
+})
 
 async function charger() {
   cocktails.value = await catalogueService.listerCocktails()
@@ -51,8 +60,22 @@ onMounted(charger)
       <button class="add" @click="ajouter">+ Ajouter un cocktail</button>
     </div>
 
-    <div class="grid">
-      <article v-for="c in cocktails" :key="c.id" class="card" :class="{ masque: !c.realisable }">
+    <div class="barre">
+      <div class="recherche">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" />
+        </svg>
+        <input v-model="recherche" type="text" placeholder="Rechercher un cocktail…" />
+      </div>
+      <button class="filtre" :class="{ on: filtreFavoris }" @click="filtreFavoris = !filtreFavoris">
+        <svg viewBox="0 0 24 24" :fill="filtreFavoris ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2l3 6 7 .9-5 4.8 1.2 6.9L12 17.8 5.6 20.6 7 13.7 2 8.9 9 8z" /></svg>
+        Favoris
+      </button>
+    </div>
+
+    <p v-if="listeFiltree.length === 0" class="etat">Aucun cocktail trouvé.</p>
+    <div v-else class="grid">
+      <article v-for="c in listeFiltree" :key="c.id" class="card" :class="{ masque: !c.realisable }">
         <div class="pic">
           <img :src="imageUrl(c.imageUrl)" :alt="c.nom" />
           <span v-if="c.favori" class="fav-badge">
@@ -111,6 +134,14 @@ onMounted(charger)
 .entete { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
 .compte { font-size: 13px; color: var(--ink-soft); font-weight: 600; }
 .add { background: var(--btn); border: 1px solid var(--btn-stroke); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 10px 16px; border-radius: 12px; box-shadow: var(--btn-sheen); }
+
+.barre { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+.recherche { flex: 1; min-width: 220px; display: flex; align-items: center; gap: 10px; background: var(--glass-strong); border: 1.5px solid var(--line); border-radius: 14px; padding: 11px 14px; backdrop-filter: blur(20px) saturate(150%); }
+.recherche svg { width: 17px; height: 17px; color: var(--ink-soft); flex-shrink: 0; }
+.recherche input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-family: inherit; font-size: 14px; }
+.filtre { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; padding: 0 16px; border-radius: 14px; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; color: var(--ink-soft); background: var(--glass-strong); border: 1.5px solid var(--line); backdrop-filter: blur(20px) saturate(150%); transition: background 0.15s, color 0.15s, border-color 0.15s; }
+.filtre svg { width: 16px; height: 16px; }
+.filtre.on { color: var(--gold); background: rgba(240, 194, 122, 0.16); border-color: rgba(240, 194, 122, 0.45); }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
 .card { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }

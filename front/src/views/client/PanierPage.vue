@@ -32,8 +32,12 @@ async function commander() {
     localStorage.setItem('clientNom', requete.clientNom)
     panier.vider()
     router.push({ name: 'mes-commandes' })
-  } catch {
-    erreur.value = "Impossible d'envoyer la commande. Réessayez."
+  } catch (e: unknown) {
+    // distingue « serveur injoignable » (pas de réponse) d'une erreur renvoyée par l'API
+    const reponse = (e as { response?: { status?: number } })?.response
+    erreur.value = reponse
+      ? `Commande refusée (erreur ${reponse.status}). Réessayez.`
+      : "Serveur injoignable depuis cet appareil — vérifiez le réseau / videz le cache."
   } finally {
     envoiEnCours.value = false
   }

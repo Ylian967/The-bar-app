@@ -1,7 +1,6 @@
 package fr.barapp.barapp.config;
 
 import fr.barapp.barapp.security.JwtAuthFilter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -22,9 +21,6 @@ import java.util.List;
 /** Configuration de la sécurité : routes publiques vs réservées au barmaker, JWT, CORS. */
 @Configuration
 public class SecurityConfig {
-
-    @Value("${app.cors.origins}")
-    private List<String> corsOrigins;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -70,7 +66,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(corsOrigins);
+        // Toutes origines autorisées : l'app est servie même origine via nginx, et accessible
+        // depuis n'importe quel appareil du réseau (téléphone). Sûr ici car l'auth est par
+        // jeton JWT dans l'en-tête Authorization (pas de cookie de session).
+        config.setAllowedOriginPatterns(List.of("*"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
