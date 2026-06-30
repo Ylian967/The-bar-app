@@ -166,6 +166,15 @@ Quand **toutes** les lignes sont `TERMINEE`, la commande passe `TERMINEE`.
 - ⬜ Phase 3 — front Vue + TS (vues client + barman /admin, responsive, tests, Dockerfile).
 - ⬜ Phase 4 — PowerPoint + répétition démo 15 min.
 
+## 🎨 Direction artistique : « NUIT PREMIUM » (dark + glass + mesh)
+Refonte validée par Ylian (le flat « Pop » a été ANNULÉ via `git checkout`). Tendance 2026 : dark mode,
+**mesh gradients** (halos violet/magenta/bleu en fond, dans `body` de `theme.css`), **glassmorphism**
+accentué (cartes en verre dépoli : `var(--sheen)` + `var(--stroke)` + `backdrop-filter: blur` + `var(--edge)`),
+photos qui ressortent. Accent = dégradé **rose→violet** `--accent` (#FF4D8D → #A24BFF). Prix en **or** `--gold #FFC27A`.
+Police **Sora** (titres) + Inter. Tout est dans `front/src/assets/theme.css` (palette + classes .glass/.btn/.chip/.card)
++ styles scopés des composants (convertis en verre : `var(--glass-strong)` + stroke + blur). Maquette de
+référence : `maquettes/refonte-dark.html`. ⚠️ Texte = blanc/muted ; surfaces = verre ; NE PAS remettre de fond clair.
+
 ## 🗂️ Fichiers de référence
 - `JOURNAL.md` — carnet de bord détaillé jour par jour.
 - `docs/MCD.md` — modèle de données complet.

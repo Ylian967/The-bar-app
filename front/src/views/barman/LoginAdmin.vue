@@ -59,8 +59,8 @@ async function seConnecter() {
     radial-gradient(700px 500px at 0% 110%, rgba(0, 194, 168, 0.18), transparent), var(--cream);
   padding: 20px;
 }
-.lcard { width: 360px; max-width: 100%; background: #fff; border-radius: 26px; padding: 34px 30px; box-shadow: var(--shadow); text-align: center; }
-.lg { width: 64px; height: 64px; border-radius: 20px; margin: 0 auto; background: linear-gradient(135deg, var(--coral), var(--mango)); display: grid; place-items: center; }
+.lcard { width: 360px; max-width: 100%; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 26px; padding: 34px 30px; box-shadow: var(--shadow); text-align: center; }
+.lg { width: 64px; height: 64px; border-radius: 20px; margin: 0 auto; background: var(--accent); display: grid; place-items: center; }
 .lg svg { width: 36px; height: 36px; color: #fff; }
 h2 { font-size: 24px; font-weight: 800; margin-top: 12px; }
 .sub { color: var(--ink-soft); font-size: 13px; margin-bottom: 22px; }

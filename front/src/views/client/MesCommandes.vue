@@ -82,20 +82,20 @@ onMounted(charger)
 .screen { max-width: 480px; margin: 0 auto; min-height: 100vh; background: var(--cream); padding: 22px 18px 100px; }
 .haut { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 h1 { font-size: 28px; font-weight: 800; }
-.refresh { width: 40px; height: 40px; border-radius: 50%; background: #fff; box-shadow: var(--shadow-sm); font-size: 18px; }
-.tabs { display: flex; gap: 8px; background: #f2ecf7; padding: 5px; border-radius: 16px; margin-bottom: 16px; }
+.refresh { width: 40px; height: 40px; border-radius: 50%; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); box-shadow: var(--shadow-sm); font-size: 18px; }
+.tabs { display: flex; gap: 8px; background: rgba(255,255,255,0.08); padding: 5px; border-radius: 16px; margin-bottom: 16px; }
 .t { flex: 1; padding: 10px; border-radius: 12px; font-weight: 600; font-size: 13px; color: var(--ink-soft); background: transparent; }
-.t.on { background: #fff; color: var(--ink); box-shadow: var(--shadow-sm); }
+.t.on { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); color: var(--ink); box-shadow: var(--shadow-sm); }
 .card.cmd { padding: 16px; margin-bottom: 14px; }
 .top { display: flex; justify-content: space-between; align-items: center; }
-.id { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; }
+.id { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 16px; }
 .date { color: var(--ink-soft); font-size: 12px; margin-top: 2px; }
 .contenu { font-size: 13px; margin: 8px 0 14px; }
 .steps { display: flex; align-items: center; }
-.dot { width: 22px; height: 22px; border-radius: 50%; background: #efe9f5; flex-shrink: 0; }
+.dot { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.08); flex-shrink: 0; }
 .dot.done { background: var(--teal); }
 .dot.now { background: var(--coral); box-shadow: 0 0 0 4px rgba(255, 77, 109, 0.18); }
-.bar { flex: 1; height: 3px; background: #efe9f5; margin: 0 4px; }
+.bar { flex: 1; height: 3px; background: rgba(255,255,255,0.08); margin: 0 4px; }
 .bar.fill { background: var(--teal); }
 .steplabels { display: flex; justify-content: space-between; margin-top: 7px; font-size: 10px; color: var(--ink-soft); font-weight: 600; }
 </style>

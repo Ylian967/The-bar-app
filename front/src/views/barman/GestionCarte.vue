@@ -53,9 +53,9 @@ function deconnexion() {
 .tbar h2 { font-size: 24px; font-weight: 800; }
 .sub { color: var(--ink-soft); font-size: 13px; }
 .who { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
-.avt { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--grape), #3fb6ff); display: grid; place-items: center; color: #fff; font-weight: 700; }
-.out { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; color: var(--ink-soft); font-size: 12px; font-weight: 600; }
-.tabs { display: flex; gap: 8px; background: #f2ecf7; padding: 5px; border-radius: 16px; max-width: 360px; margin-bottom: 22px; }
+.avt { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; color: #fff; font-weight: 700; }
+.out { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; color: var(--ink-soft); font-size: 12px; font-weight: 600; }
+.tabs { display: flex; gap: 8px; background: rgba(255,255,255,0.08); padding: 5px; border-radius: 16px; max-width: 360px; margin-bottom: 22px; }
 .t { flex: 1; padding: 10px; border-radius: 12px; font-weight: 600; font-size: 13px; color: var(--ink-soft); background: transparent; }
-.t.on { background: #fff; color: var(--ink); box-shadow: var(--shadow-sm); }
+.t.on { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); color: var(--ink); box-shadow: var(--shadow-sm); }
 </style>

@@ -107,21 +107,21 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.form { background: #fff; border-radius: 20px; box-shadow: var(--shadow-sm); padding: 20px; }
+.form { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 20px; box-shadow: var(--shadow-sm); padding: 20px; }
 .form h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
 .search { display: flex; gap: 10px; margin-bottom: 14px; }
 .search input { flex: 1; background: var(--cream); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 12px; font-family: inherit; font-size: 14px; }
-.go { background: linear-gradient(135deg, var(--coral), var(--mango)); color: #fff; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; padding: 0 16px; border-radius: 12px; }
+.go { background: var(--accent); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 0 16px; border-radius: 12px; }
 .info { color: var(--ink-soft); font-size: 13px; text-align: center; padding: 10px; }
 .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; max-height: 320px; overflow-y: auto; }
 .res { background: var(--cream); border-radius: 16px; overflow: hidden; text-align: left; }
 .res img { width: 100%; height: 90px; object-fit: cover; }
-.res span { display: block; padding: 8px 10px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; }
+.res span { display: block; padding: 8px 10px; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 13px; }
 .config .apercu { display: flex; align-items: center; gap: 12px; background: var(--cream); border-radius: 16px; padding: 10px; margin-bottom: 14px; }
 .apercu img { width: 54px; height: 54px; border-radius: 12px; object-fit: cover; }
-.apercu .nm { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; }
+.apercu .nm { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; }
 .apercu .ings { font-size: 11px; color: var(--ink-soft); }
-.chg { margin-left: auto; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; font-size: 12px; font-weight: 600; color: var(--ink-soft); }
+.chg { margin-left: auto; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; font-size: 12px; font-weight: 600; color: var(--ink-soft); }
 label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 12px; }
 select { display: block; width: 100%; margin-top: 6px; background: var(--cream); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 12px; font-family: inherit; font-size: 14px; }
 .bloc { font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 14px; }

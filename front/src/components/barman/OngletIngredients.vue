@@ -56,17 +56,17 @@ onMounted(charger)
 <style scoped>
 .aide { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; }
 .entete { display: flex; gap: 10px; margin-bottom: 18px; max-width: 480px; }
-.entete input { flex: 1; background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; font-family: inherit; font-size: 14px; }
-.add { background: linear-gradient(135deg, var(--coral), var(--mango)); color: #fff; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; padding: 0 18px; border-radius: 14px; }
+.entete input { flex: 1; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; font-family: inherit; font-size: 14px; }
+.add { background: var(--accent); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 0 18px; border-radius: 14px; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
-.card { background: #fff; border-radius: 18px; box-shadow: var(--shadow-sm); padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+.card { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 18px; box-shadow: var(--shadow-sm); padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
 .card.rupture { opacity: 0.6; }
 .card img, .card .ph { width: 56px; height: 56px; border-radius: 14px; object-fit: cover; }
-.card .ph { background: var(--cream); display: grid; place-items: center; font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--ink-soft); font-size: 22px; }
-.card .nom { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; text-align: center; }
-.stock { width: 100%; border-radius: 999px; padding: 7px; font-weight: 700; font-size: 12px; background: #ffe4ea; color: var(--coral-d); }
-.stock.on { background: #d7f6f0; color: var(--teal-d); }
+.card .ph { background: var(--cream); display: grid; place-items: center; font-family: 'Sora', sans-serif; font-weight: 700; color: var(--ink-soft); font-size: 22px; }
+.card .nom { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 13px; text-align: center; }
+.stock { width: 100%; border-radius: 999px; padding: 7px; font-weight: 700; font-size: 12px; background: rgba(255,77,141,0.18); color: var(--coral-d); }
+.stock.on { background: rgba(63,224,176,0.16); color: var(--teal-d); }
 .del { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 9px; background: var(--cream); color: var(--coral-d); display: grid; place-items: center; }
 .del svg { width: 14px; height: 14px; }
 </style>

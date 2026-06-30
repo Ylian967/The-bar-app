@@ -28,7 +28,7 @@
   padding: 26px 0;
   color: #fff;
 }
-.lg { width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(135deg, var(--coral), var(--mango)); display: grid; place-items: center; }
+.lg { width: 46px; height: 46px; border-radius: 14px; background: var(--accent); display: grid; place-items: center; }
 .lg svg { width: 26px; height: 26px; color: #fff; }
 .nav { display: flex; flex-direction: column; gap: 16px; }
 .i { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: #9c8dcb; }

@@ -1,19 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --coral: #ff4d6d;
-  --coral-d: #e6325a;
-  --teal: #00c2a8;
-  --teal-d: #00a892;
-  --mango: #ffb23e;
-  --mango-d: #f59a12;
-  --grape: #7a4dff;
-  --ink: #241046;
-  --ink-soft: #6b5b86;
-  --cream: #fff7f1;
-  --line: #f0e9f2;
-  --shadow: 0 18px 40px rgba(122, 77, 255, 0.14);
-  --shadow-sm: 0 8px 20px rgba(36, 16, 70, 0.08);
+  /* Accent (dégradé signature) — rouge bordeaux premium */
+  --accent1: #d13a57;
+  --accent2: #6e1430;
+  --accent: linear-gradient(135deg, var(--accent1), var(--accent2));
+  --gold: #f0c27a;
+
+  /* Verre (glassmorphism) */
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-strong: rgba(255, 255, 255, 0.16);
+  --sheen: linear-gradient(150deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
+  --stroke: rgba(255, 255, 255, 0.22);
+  --edge: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  /* Texte */
+  --txt: #ffffff;
+  --muted: rgba(255, 255, 255, 0.55);
+  --muted2: rgba(255, 255, 255, 0.4);
+
+  /* Alias hérités (pour que les composants restent cohérents en dark) */
+  --ink: #ffffff;
+  --ink-soft: rgba(255, 255, 255, 0.55);
+  --cream: rgba(255, 255, 255, 0.05);
+  --line: rgba(255, 255, 255, 0.18);
+  --coral: var(--gold);
+  --coral-d: #ff7da8;
+  --teal: #3fe0b0;
+  --teal-d: #3fe0b0;
+  --mango: var(--gold);
+  --mango-d: var(--gold);
+  --grape: var(--accent2);
+
+  --shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -24,19 +44,32 @@
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: #ede8f5;
-  color: var(--ink);
+  color: var(--txt);
+  /* contrôles natifs (select, spinners, autofill) rendus en sombre */
+  color-scheme: dark;
+  background: #0b0509;
+  background-image:
+    radial-gradient(620px 520px at 6% 2%, rgba(140, 26, 54, 0.55), transparent 60%),
+    radial-gradient(560px 500px at 98% 8%, rgba(193, 51, 84, 0.42), transparent 60%),
+    radial-gradient(680px 600px at 50% 104%, rgba(90, 18, 38, 0.5), transparent 60%);
+  background-attachment: fixed;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
+/* Masquer les barres de défilement (rendu premium) */
+html { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
 h1, h2, h3, h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Sora', sans-serif;
 }
 
 button {
   font-family: inherit;
   cursor: pointer;
   border: none;
+  color: inherit;
 }
 
 a {
@@ -44,26 +77,50 @@ a {
   text-decoration: none;
 }
 
+/* Champs de saisie : texte blanc lisible sur le verre sombre (sinon noir par défaut) */
+input,
+select,
+textarea {
+  color: #fff;
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+option {
+  color: #fff;
+  background: #1a0f16;
+}
+
 img {
   display: block;
   max-width: 100%;
 }
 
-/* --- Boutons réutilisables --- */
+/* --- Verre réutilisable --- */
+.glass {
+  background: var(--sheen);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: var(--edge);
+}
+
+/* --- Boutons --- */
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 100%;
-  background: linear-gradient(135deg, var(--coral), var(--coral-d));
+  background: var(--accent);
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-weight: 700;
   font-size: 16px;
   padding: 15px;
   border-radius: 16px;
-  box-shadow: 0 12px 24px rgba(255, 77, 109, 0.4);
+  box-shadow: 0 16px 34px rgba(193, 51, 84, 0.45);
 }
 .btn:disabled {
   opacity: 0.5;
@@ -71,14 +128,20 @@ img {
   cursor: not-allowed;
 }
 .btn.ghost {
-  background: #fff;
-  color: var(--ink);
-  border: 1.5px solid var(--line);
-  box-shadow: none;
+  background: var(--sheen);
+  color: #fff;
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  box-shadow: var(--edge);
+  transition: background 0.18s, border-color 0.18s;
+}
+.btn.ghost:hover {
+  background: var(--glass-strong);
+  border-color: rgba(255, 255, 255, 0.34);
 }
 .btn.teal {
-  background: linear-gradient(135deg, var(--teal), var(--teal-d));
-  box-shadow: 0 12px 24px rgba(0, 194, 168, 0.4);
+  background: var(--accent);
 }
 
 /* --- Badges de statut --- */
@@ -90,37 +153,44 @@ img {
   font-weight: 700;
   padding: 6px 12px;
   border-radius: 999px;
+  border: 1px solid var(--stroke);
 }
-.badge.cmd { background: #ffefd6; color: var(--mango-d); }
-.badge.prep { background: #ffe4ea; color: var(--coral-d); }
-.badge.done { background: #d7f6f0; color: var(--teal-d); }
+.badge.cmd { background: rgba(255, 194, 75, 0.16); color: var(--gold); }
+.badge.prep { background: rgba(255, 77, 141, 0.18); color: #ff8fb3; }
+.badge.done { background: rgba(63, 224, 176, 0.16); color: #5fe9c0; }
 
-/* --- Divers --- */
+/* --- Chips --- */
 .chip {
-  background: #fff;
-  border: 1px solid var(--line);
+  background: var(--sheen);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--edge);
   border-radius: 999px;
-  padding: 9px 16px;
+  padding: 10px 16px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--ink-soft);
+  color: #fff;
   white-space: nowrap;
 }
 .chip.on {
-  background: linear-gradient(135deg, var(--coral), var(--mango));
+  background: var(--accent);
   color: #fff;
   border-color: transparent;
+  box-shadow: 0 10px 24px rgba(193, 51, 84, 0.45);
 }
 
+/* --- Carte en verre --- */
 .card {
-  background: #fff;
+  background: var(--sheen);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: var(--edge);
   border-radius: 20px;
-  box-shadow: var(--shadow-sm);
 }
 
 .etat {
   text-align: center;
-  color: var(--ink-soft);
+  color: var(--muted);
   padding: 40px 20px;
   font-size: 14px;
 }

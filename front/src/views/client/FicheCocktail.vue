@@ -91,20 +91,20 @@ function ajouterAuPanier() {
 }
 .back { left: 18px; }
 .corps { padding: 22px 18px 30px; }
-.tag { display: inline-block; background: #ffe4ea; color: var(--coral-d); font-weight: 600; font-size: 12px; padding: 5px 12px; border-radius: 999px; }
+.tag { display: inline-block; background: rgba(255,77,141,0.18); color: var(--coral-d); font-weight: 600; font-size: 12px; padding: 5px 12px; border-radius: 999px; }
 .corps h1 { font-size: 28px; font-weight: 800; margin: 10px 0 6px; }
 .desc { color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
 .corps h3 { font-size: 16px; margin: 22px 0 10px; }
 .ings { display: flex; flex-wrap: wrap; gap: 8px; }
-.ing { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 7px 13px; font-size: 12px; font-weight: 500; }
+.ing { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1px solid var(--line); border-radius: 999px; padding: 7px 13px; font-size: 12px; font-weight: 500; }
 .tailles { display: flex; gap: 10px; }
-.sz { flex: 1; background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.sz .l { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; }
+.sz { flex: 1; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1.5px solid var(--line); border-radius: 16px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sz .l { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 16px; }
 .sz .p { font-size: 12px; color: var(--ink-soft); }
-.sz.on { border-color: transparent; background: linear-gradient(135deg, var(--coral), var(--mango)); color: #fff; }
+.sz.on { border-color: transparent; background: var(--accent); color: #fff; }
 .sz.on .p { color: #fff; }
 .bas { display: flex; gap: 14px; align-items: center; margin-top: 26px; }
-.qty { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 10px 14px; font-family: 'Poppins', sans-serif; font-weight: 700; }
-.qty button { width: 30px; height: 30px; border-radius: 10px; background: #ffe4ea; color: var(--coral); font-size: 18px; }
+.qty { display: flex; align-items: center; gap: 12px; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1px solid var(--line); border-radius: 16px; padding: 10px 14px; font-family: 'Sora', sans-serif; font-weight: 700; }
+.qty button { width: 30px; height: 30px; border-radius: 10px; background: rgba(255,77,141,0.18); color: var(--coral); font-size: 18px; }
 .btn { flex: 1; }
 </style>

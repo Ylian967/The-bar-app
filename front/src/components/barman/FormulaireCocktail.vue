@@ -145,7 +145,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.form { background: #fff; border-radius: 20px; box-shadow: var(--shadow-sm); padding: 20px; }
+.form { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 20px; box-shadow: var(--shadow-sm); padding: 20px; }
 .form h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
 label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 12px; }
 input, select, textarea { display: block; width: 100%; margin-top: 6px; background: var(--cream); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 12px; font-family: inherit; font-size: 14px; }
@@ -154,15 +154,15 @@ input, select, textarea { display: block; width: 100%; margin-top: 6px; backgrou
 .prix span { display: flex; align-items: center; gap: 4px; font-weight: 700; color: var(--ink); }
 .prix input { width: 64px; margin: 0; }
 .puces { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0; min-height: 24px; }
-.puce { background: linear-gradient(135deg, var(--coral), var(--mango)); color: #fff; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; }
+.puce { background: var(--accent); color: #fff; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; }
 .puce em { font-style: normal; margin-left: 4px; opacity: 0.85; }
 .vide { color: var(--ink-soft); font-size: 12px; font-weight: 500; }
 .rech { margin-top: 4px; }
 .options { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; max-height: 140px; overflow-y: auto; }
 .opt { background: var(--cream); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--ink); }
-.opt.creer { background: #eadfff; color: var(--grape); border-color: transparent; font-weight: 700; }
+.opt.creer { background: rgba(162,75,255,0.2); color: var(--grape); border-color: transparent; font-weight: 700; }
 .err { color: var(--coral-d); font-size: 13px; margin-bottom: 10px; }
 .actions { display: flex; gap: 10px; }
 .actions .btn { flex: 1; }
-.btn.danger { background: #ffe4ea; color: var(--coral-d); box-shadow: none; }
+.btn.danger { background: rgba(255,77,141,0.18); color: var(--coral-d); box-shadow: none; }
 </style>

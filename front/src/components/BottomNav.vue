@@ -33,9 +33,9 @@ const panier = usePanierStore()
   max-width: 420px;
   display: flex;
   justify-content: space-around;
-  background: #fff;
+  background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%);
   padding: 13px 8px;
-  box-shadow: 0 14px 34px rgba(36, 16, 70, 0.2);
+  box-shadow: 0 14px 34px rgba(8, 6, 15, 0.2);
   border-radius: 24px;
 }
 .b {
@@ -45,7 +45,7 @@ const panier = usePanierStore()
   gap: 4px;
   font-size: 11px;
   font-weight: 600;
-  color: #b6adc6;
+  color: var(--muted2);
 }
 .b svg { width: 22px; height: 22px; }
 .b.on { color: var(--coral); }
