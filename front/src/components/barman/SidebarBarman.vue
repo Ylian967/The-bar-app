@@ -1,10 +1,6 @@
 <template>
   <aside class="side">
-    <div class="lg">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4h16l-8 9z" /><path d="M12 13v6" /><path d="M8 21h8" />
-      </svg>
-    </div>
+    <img class="lg" src="/logo.svg" alt="Le Bar'app" />
     <nav class="nav">
       <RouterLink to="/admin/commandes" class="i" active-class="on" title="Commandes à traiter">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-2.5-1.6L13 20.4 10.5 19 8 20.4 6 21z" /><path d="M9 8h6M9 12h5" /></svg>
@@ -29,8 +25,7 @@
   padding: 26px 0;
   color: #fff;
 }
-.lg { width: 46px; height: 46px; border-radius: 14px; background: var(--accent); display: grid; place-items: center; }
-.lg svg { width: 26px; height: 26px; color: #fff; }
+.lg { width: 46px; height: 46px; display: block; }
 .nav { display: flex; flex-direction: column; gap: 16px; }
 .i { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: rgba(255, 255, 255, 0.45); }
 .i svg { width: 21px; height: 21px; }

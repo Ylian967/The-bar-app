@@ -1,0 +1,11 @@
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Le Bar'app">
+  <rect width="64" height="64" rx="16" fill="#5e1228"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="15.5" fill="none" stroke="#f0c27a" stroke-opacity="0.28"/>
+  <g stroke="#f0c27a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M15 19 L49 19 L32 37 Z"/>
+    <path d="M32 37 V49"/>
+    <path d="M23 49 H41"/>
+  </g>
+  <circle cx="39.5" cy="25" r="2.8" fill="#d13a57"/>
+  <path d="M39.5 25 L46 17" stroke="#f0c27a" stroke-width="2" stroke-linecap="round"/>
+</svg>

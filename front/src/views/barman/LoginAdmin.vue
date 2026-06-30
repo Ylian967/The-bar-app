@@ -28,11 +28,7 @@ async function seConnecter() {
 <template>
   <div class="login">
     <form class="lcard" @submit.prevent="seConnecter">
-      <div class="lg">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16l-8 9z" /><path d="M12 13v6" /><path d="M8 21h8" />
-        </svg>
-      </div>
+      <img class="lg" src="/logo.svg" alt="Le Bar'app" />
       <h2>Le Bar'app</h2>
       <p class="sub">Espace Barmaker</p>
 
@@ -60,8 +56,7 @@ async function seConnecter() {
   padding: 20px;
 }
 .lcard { width: 360px; max-width: 100%; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 26px; padding: 34px 30px; box-shadow: var(--shadow); text-align: center; }
-.lg { width: 64px; height: 64px; border-radius: 20px; margin: 0 auto; background: var(--accent); display: grid; place-items: center; }
-.lg svg { width: 36px; height: 36px; color: #fff; }
+.lg { width: 64px; height: 64px; margin: 0 auto; display: block; }
 h2 { font-size: 24px; font-weight: 800; margin-top: 12px; }
 .sub { color: var(--ink-soft); font-size: 13px; margin-bottom: 22px; }
 .field { display: block; text-align: left; font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 14px; }
