@@ -55,8 +55,8 @@ async function seConnecter() {
   display: grid;
   place-items: center;
   background:
-    radial-gradient(900px 500px at 80% -10%, rgba(255, 77, 109, 0.18), transparent),
-    radial-gradient(700px 500px at 0% 110%, rgba(0, 194, 168, 0.18), transparent), var(--cream);
+    radial-gradient(900px 500px at 80% -10%, rgba(193, 51, 84, 0.22), transparent),
+    radial-gradient(700px 500px at 0% 110%, rgba(110, 20, 48, 0.25), transparent), var(--cream);
   padding: 20px;
 }
 .lcard { width: 360px; max-width: 100%; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 26px; padding: 34px 30px; box-shadow: var(--shadow); text-align: center; }

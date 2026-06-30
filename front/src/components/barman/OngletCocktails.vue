@@ -108,9 +108,9 @@ onMounted(charger)
 </template>
 
 <style scoped>
-.entete { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.entete { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
 .compte { font-size: 13px; color: var(--ink-soft); font-weight: 600; }
-.add { background: var(--accent); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 10px 16px; border-radius: 12px; }
+.add { background: var(--btn); border: 1px solid var(--btn-stroke); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 10px 16px; border-radius: 12px; box-shadow: var(--btn-sheen); }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
 .card { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }

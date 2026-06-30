@@ -9,7 +9,10 @@ const mojito: Cocktail = {
 }
 
 describe('store panier', () => {
-  beforeEach(() => setActivePinia(createPinia()))
+  beforeEach(() => {
+    localStorage.clear() // le panier est persisté : on isole chaque test
+    setActivePinia(createPinia())
+  })
 
   it('ajoute un article et calcule le total', () => {
     const p = usePanierStore()

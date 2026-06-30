@@ -94,7 +94,7 @@ h1 { font-size: 28px; font-weight: 800; }
 .steps { display: flex; align-items: center; }
 .dot { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.08); flex-shrink: 0; }
 .dot.done { background: var(--teal); }
-.dot.now { background: var(--coral); box-shadow: 0 0 0 4px rgba(255, 77, 109, 0.18); }
+.dot.now { background: var(--coral); box-shadow: 0 0 0 4px rgba(240, 194, 122, 0.22); }
 .bar { flex: 1; height: 3px; background: rgba(255,255,255,0.08); margin: 0 4px; }
 .bar.fill { background: var(--teal); }
 .steplabels { display: flex; justify-content: space-between; margin-top: 7px; font-size: 10px; color: var(--ink-soft); font-weight: 600; }

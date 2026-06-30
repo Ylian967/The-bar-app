@@ -20,7 +20,8 @@
 .side {
   width: 84px;
   flex-shrink: 0;
-  background: #241046;
+  background: linear-gradient(180deg, #2a0f1c, #18090f);
+  border-right: 1px solid var(--stroke);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +32,14 @@
 .lg { width: 46px; height: 46px; border-radius: 14px; background: var(--accent); display: grid; place-items: center; }
 .lg svg { width: 26px; height: 26px; color: #fff; }
 .nav { display: flex; flex-direction: column; gap: 16px; }
-.i { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: #9c8dcb; }
+.i { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: rgba(255, 255, 255, 0.45); }
 .i svg { width: 21px; height: 21px; }
 .i.on { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+@media (max-width: 640px) {
+  .side { width: 60px; gap: 18px; padding: 18px 0; }
+  .lg, .i { width: 40px; height: 40px; border-radius: 12px; }
+  .lg svg { width: 22px; height: 22px; }
+  .i svg { width: 19px; height: 19px; }
+}
 </style>

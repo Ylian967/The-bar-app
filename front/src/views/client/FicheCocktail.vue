@@ -84,14 +84,19 @@ function ajouterAuPanier() {
 .screen { max-width: 480px; margin: 0 auto; min-height: 100vh; background: var(--cream); }
 .hero { position: relative; height: 280px; }
 .hero img { width: 100%; height: 100%; object-fit: cover; }
-.hero .ov { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 8, 40, 0.35), transparent 40%); }
+/* dégradé sombre en haut : garantit la lisibilité du bouton retour même sur photo claire */
+.hero .ov { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 38%); }
 .rond {
-  position: absolute; top: 20px; width: 42px; height: 42px; border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92); color: var(--ink); font-size: 22px; line-height: 1;
+  position: absolute; top: max(20px, env(safe-area-inset-top)); width: 42px; height: 42px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(10, 6, 12, 0.5); color: #fff; font-size: 24px; line-height: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px) saturate(150%); -webkit-backdrop-filter: blur(12px) saturate(150%);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
 }
 .back { left: 18px; }
 .corps { padding: 22px 18px 30px; }
-.tag { display: inline-block; background: rgba(255,77,141,0.18); color: var(--coral-d); font-weight: 600; font-size: 12px; padding: 5px 12px; border-radius: 999px; }
+.tag { display: inline-block; background: rgba(240, 194, 122, 0.16); color: var(--gold); font-weight: 600; font-size: 12px; padding: 5px 12px; border-radius: 999px; }
 .corps h1 { font-size: 28px; font-weight: 800; margin: 10px 0 6px; }
 .desc { color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
 .corps h3 { font-size: 16px; margin: 22px 0 10px; }
@@ -101,10 +106,20 @@ function ajouterAuPanier() {
 .sz { flex: 1; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1.5px solid var(--line); border-radius: 16px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .sz .l { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 16px; }
 .sz .p { font-size: 12px; color: var(--ink-soft); }
-.sz.on { border-color: transparent; background: var(--accent); color: #fff; }
+.sz.on { border-color: var(--btn-stroke); background: var(--btn); color: #fff; box-shadow: var(--btn-sheen); }
 .sz.on .p { color: #fff; }
 .bas { display: flex; gap: 14px; align-items: center; margin-top: 26px; }
 .qty { display: flex; align-items: center; gap: 12px; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1px solid var(--line); border-radius: 16px; padding: 10px 14px; font-family: 'Sora', sans-serif; font-weight: 700; }
-.qty button { width: 30px; height: 30px; border-radius: 10px; background: rgba(255,77,141,0.18); color: var(--coral); font-size: 18px; }
+.qty button { width: 30px; height: 30px; border-radius: 10px; background: rgba(240, 194, 122, 0.16); color: var(--gold); font-size: 18px; }
 .btn { flex: 1; }
+
+@media (max-width: 480px) {
+  /* on empile : quantité en haut, bouton « Ajouter » pleine largeur en dessous */
+  .bas { flex-direction: column; align-items: stretch; gap: 12px; }
+  .qty { justify-content: space-between; }
+}
+@media (max-width: 380px) {
+  .hero { height: 230px; }
+  .corps h1 { font-size: 24px; }
+}
 </style>

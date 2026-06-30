@@ -58,4 +58,12 @@ function deconnexion() {
 .tabs { display: flex; gap: 8px; background: rgba(255,255,255,0.08); padding: 5px; border-radius: 16px; max-width: 360px; margin-bottom: 22px; }
 .t { flex: 1; padding: 10px; border-radius: 12px; font-weight: 600; font-size: 13px; color: var(--ink-soft); background: transparent; }
 .t.on { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); color: var(--ink); box-shadow: var(--shadow-sm); }
+
+@media (max-width: 640px) {
+  .main { padding: 16px 14px; }
+  .tbar { flex-wrap: wrap; gap: 12px; }
+  .tbar h2 { font-size: 20px; }
+  .who { font-size: 12px; gap: 8px; }
+  .tabs { max-width: none; }
+}
 </style>

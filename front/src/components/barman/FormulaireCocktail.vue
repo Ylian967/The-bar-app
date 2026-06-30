@@ -154,13 +154,13 @@ input, select, textarea { display: block; width: 100%; margin-top: 6px; backgrou
 .prix span { display: flex; align-items: center; gap: 4px; font-weight: 700; color: var(--ink); }
 .prix input { width: 64px; margin: 0; }
 .puces { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0; min-height: 24px; }
-.puce { background: var(--accent); color: #fff; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; }
+.puce { background: var(--btn); border: 1px solid var(--btn-stroke); backdrop-filter: blur(14px) saturate(150%); -webkit-backdrop-filter: blur(14px) saturate(150%); color: #fff; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; box-shadow: var(--btn-sheen); }
 .puce em { font-style: normal; margin-left: 4px; opacity: 0.85; }
 .vide { color: var(--ink-soft); font-size: 12px; font-weight: 500; }
 .rech { margin-top: 4px; }
 .options { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; max-height: 140px; overflow-y: auto; }
 .opt { background: var(--cream); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--ink); }
-.opt.creer { background: rgba(162,75,255,0.2); color: var(--grape); border-color: transparent; font-weight: 700; }
+.opt.creer { background: rgba(240,194,122,0.18); color: var(--gold); border-color: rgba(240,194,122,0.4); font-weight: 700; }
 .err { color: var(--coral-d); font-size: 13px; margin-bottom: 10px; }
 .actions { display: flex; gap: 10px; }
 .actions .btn { flex: 1; }

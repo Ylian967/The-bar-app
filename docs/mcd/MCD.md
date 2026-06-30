@@ -27,16 +27,21 @@ Une boisson de la carte. Appartient à une catégorie.
 |-------|------|------|
 | id | bigint (PK) | |
 | nom | varchar | |
+| accroche | varchar | phrase courte affichée sur la carte (optionnel) |
 | description | text | |
 | image_url | varchar | pour l'ergonomie (image du cocktail) |
+| du_jour | boolean | présent à la carte du jour (défaut `true`) |
+| favori | boolean | mis en avant « Cocktails du jour » (défaut `false`) |
 | categorie_id | bigint (FK → categorie) | |
 
 ### 4. ingredient
 La liste des ingrédients possibles (ex : rhum, menthe, citron vert).
-| Champ | Type |
-|-------|------|
-| id | bigint (PK) |
-| nom | varchar |
+| Champ | Type | Note |
+|-------|------|------|
+| id | bigint (PK) | |
+| nom | varchar (unique) | |
+| image_url | varchar | visuel de l'ingrédient (optionnel) |
+| disponible | boolean | en stock ou non (défaut `true`) |
 
 ### 5. cocktail_ingredient  (table de liaison N–N)
 Quels ingrédients composent quel cocktail.

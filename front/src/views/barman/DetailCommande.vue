@@ -102,13 +102,20 @@ onMounted(charger)
 .s { text-align: center; }
 .s .c { width: 30px; height: 30px; border-radius: 50%; margin: 0 auto; display: grid; place-items: center; font-size: 13px; font-weight: 700; background: rgba(255,255,255,0.08); color: var(--muted2); }
 .s.done .c { background: var(--teal); color: #fff; }
-.s.now .c { background: var(--coral); color: #fff; box-shadow: 0 0 0 5px rgba(255, 77, 109, 0.18); }
+.s.now .c { background: var(--coral); color: #fff; box-shadow: 0 0 0 5px rgba(240, 194, 122, 0.22); }
 .s .lb { font-size: 10px; margin-top: 6px; color: var(--ink-soft); font-weight: 600; }
 .ln { flex: 1; height: 3px; background: rgba(255,255,255,0.08); margin: 0 4px; margin-top: -18px; }
 .ln.fill { background: var(--teal); }
-.next { margin-top: 12px; width: 100%; background: var(--accent); color: #fff; padding: 11px; border-radius: 13px; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 13px; box-shadow: 0 10px 24px rgba(193, 51, 84, 0.4); transition: filter 0.15s; }
-.next:hover { filter: brightness(1.08); }
+.next { margin-top: 12px; width: 100%; background: var(--btn); border: 1px solid var(--btn-stroke); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); color: #fff; padding: 11px; border-radius: 13px; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 13px; box-shadow: var(--btn-sheen), var(--btn-glow); transition: background 0.15s; }
+.next:hover { background: var(--btn-hover); }
 .fini { margin-top: 12px; text-align: center; color: var(--teal-d); font-weight: 700; font-size: 13px; }
 .banner { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--teal); color: #fff; text-align: center; padding: 16px; border-radius: 18px; font-family: 'Sora', sans-serif; font-weight: 700; box-shadow: 0 12px 24px rgba(0, 194, 168, 0.4); }
 .banner svg { width: 20px; height: 20px; }
+
+@media (max-width: 640px) {
+  .main { padding: 16px 14px; }
+  .tbar h2 { font-size: 19px; }
+  .nm { font-size: 15px; }
+  .s .c { width: 26px; height: 26px; }
+}
 </style>

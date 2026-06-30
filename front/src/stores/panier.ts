@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { Cocktail, Taille } from '../types/models'
 
 export interface ArticlePanier {
@@ -11,9 +11,21 @@ export interface ArticlePanier {
   quantite: number
 }
 
-/** Panier du client (en mémoire le temps de la session). */
+const CLE = 'panier'
+
+function chargerPanier(): ArticlePanier[] {
+  try {
+    return JSON.parse(localStorage.getItem(CLE) ?? '[]')
+  } catch {
+    return []
+  }
+}
+
+/** Panier du client, persisté dans le localStorage (survit à un rechargement). */
 export const usePanierStore = defineStore('panier', () => {
-  const articles = ref<ArticlePanier[]>([])
+  const articles = ref<ArticlePanier[]>(chargerPanier())
+
+  watch(articles, (v) => localStorage.setItem(CLE, JSON.stringify(v)), { deep: true })
 
   const total = computed(() => articles.value.reduce((s, a) => s + a.prix * a.quantite, 0))
   const nbArticles = computed(() => articles.value.reduce((s, a) => s + a.quantite, 0))

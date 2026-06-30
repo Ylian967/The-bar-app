@@ -44,7 +44,7 @@ onMounted(charger)
 <style scoped>
 .ajout { display: flex; gap: 10px; margin-bottom: 18px; }
 .ajout input { flex: 1; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; font-family: inherit; font-size: 14px; }
-.add { background: var(--accent); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 0 18px; border-radius: 14px; }
+.add { background: var(--btn); border: 1px solid var(--btn-stroke); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 0 18px; border-radius: 14px; box-shadow: var(--btn-sheen); }
 .liste { list-style: none; display: flex; flex-direction: column; gap: 10px; max-width: 520px; }
 .liste li { display: flex; justify-content: space-between; align-items: center; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 16px; padding: 14px 18px; box-shadow: var(--shadow-sm); font-family: 'Sora', sans-serif; font-weight: 600; font-size: 15px; }
 .del { background: rgba(255,77,141,0.18); color: var(--coral-d); width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; }

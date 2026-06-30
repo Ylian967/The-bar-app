@@ -111,7 +111,7 @@ onMounted(async () => {
 .form h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
 .search { display: flex; gap: 10px; margin-bottom: 14px; }
 .search input { flex: 1; background: var(--cream); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 12px; font-family: inherit; font-size: 14px; }
-.go { background: var(--accent); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 0 16px; border-radius: 12px; }
+.go { background: var(--btn); border: 1px solid var(--btn-stroke); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; padding: 0 16px; border-radius: 12px; box-shadow: var(--btn-sheen); }
 .info { color: var(--ink-soft); font-size: 13px; text-align: center; padding: 10px; }
 .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; max-height: 320px; overflow-y: auto; }
 .res { background: var(--cream); border-radius: 16px; overflow: hidden; text-align: left; }

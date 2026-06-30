@@ -116,5 +116,14 @@ onUnmounted(() => clearInterval(timer))
 .li { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-soft); margin: 3px 0; }
 .li.noms { color: var(--ink); }
 .mi { width: 14px; height: 14px; flex-shrink: 0; }
-.go { margin-top: 14px; background: var(--accent); color: #fff; text-align: center; padding: 11px; border-radius: 14px; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px; }
+.go { margin-top: 14px; background: var(--btn); border: 1px solid var(--btn-stroke); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); color: #fff; text-align: center; padding: 11px; border-radius: 14px; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px; box-shadow: var(--btn-sheen); }
+
+@media (max-width: 640px) {
+  .main { padding: 16px 14px; }
+  .tbar { flex-wrap: wrap; gap: 12px; }
+  .tbar h2 { font-size: 20px; }
+  .who { font-size: 12px; gap: 8px; }
+  .tabs { max-width: none; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+}
 </style>

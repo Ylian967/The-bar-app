@@ -49,7 +49,8 @@ bar-app/
 ├── back/         API Spring Boot (controller / service / repository / entity / dto / mapper / security)
 ├── front/        App VueJS + TypeScript (views / components / services / stores / router)
 ├── db/           Script SQL d'initialisation + images des cocktails
-├── docs/         MCD, sujet, guides
-├── maquettes/    Maquettes (HTML + PDF) + MCD
+├── docs/         sujet de l'exam
+│   └── mcd/      MCD (schéma de la base) : MCD.md + MCD.pdf
+├── maquettes/    Aperçu de la maquette (maquette.png)
 └── docker-compose.yml
 ```

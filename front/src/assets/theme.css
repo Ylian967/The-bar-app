@@ -4,11 +4,17 @@
   /* Accent (dégradé signature) — rouge bordeaux premium */
   --accent1: #d13a57;
   --accent2: #6e1430;
-  --accent: linear-gradient(135deg, var(--accent1), var(--accent2));
+  --accent: #b22a48; /* bordeaux plat (avatars, logos) — fini le dégradé */
   --gold: #f0c27a;
 
+  /* Boutons « verre bordeaux » (frosted, sans dégradé) */
+  --btn: rgba(178, 42, 72, 0.4);
+  --btn-hover: rgba(196, 50, 82, 0.58);
+  --btn-stroke: rgba(255, 180, 195, 0.35);
+  --btn-glow: 0 10px 26px rgba(120, 20, 45, 0.35);
+  --btn-sheen: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
   /* Verre (glassmorphism) */
-  --glass: rgba(255, 255, 255, 0.1);
   --glass-strong: rgba(255, 255, 255, 0.16);
   --sheen: linear-gradient(150deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
   --stroke: rgba(255, 255, 255, 0.22);
@@ -29,8 +35,6 @@
   --teal: #3fe0b0;
   --teal-d: #3fe0b0;
   --mango: var(--gold);
-  --mango-d: var(--gold);
-  --grape: var(--accent2);
 
   --shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
   --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.35);
@@ -60,6 +64,9 @@ body {
 /* Masquer les barres de défilement (rendu premium) */
 html { scrollbar-width: none; -ms-overflow-style: none; }
 html::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+/* Garde-fou : rien ne déborde horizontalement de l'écran */
+html, body { overflow-x: clip; max-width: 100%; }
 
 h1, h2, h3, h4 {
   font-family: 'Sora', sans-serif;
@@ -113,14 +120,21 @@ img {
   justify-content: center;
   gap: 8px;
   width: 100%;
-  background: var(--accent);
+  background: var(--btn);
+  border: 1px solid var(--btn-stroke);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
   color: #fff;
   font-family: 'Sora', sans-serif;
   font-weight: 700;
   font-size: 16px;
   padding: 15px;
   border-radius: 16px;
-  box-shadow: 0 16px 34px rgba(193, 51, 84, 0.45);
+  box-shadow: var(--btn-sheen), var(--btn-glow);
+  transition: background 0.18s;
+}
+.btn:hover {
+  background: var(--btn-hover);
 }
 .btn:disabled {
   opacity: 0.5;
@@ -141,7 +155,7 @@ img {
   border-color: rgba(255, 255, 255, 0.34);
 }
 .btn.teal {
-  background: var(--accent);
+  background: var(--btn);
 }
 
 /* --- Badges de statut --- */
@@ -173,10 +187,10 @@ img {
   white-space: nowrap;
 }
 .chip.on {
-  background: var(--accent);
+  background: var(--btn);
   color: #fff;
-  border-color: transparent;
-  box-shadow: 0 10px 24px rgba(193, 51, 84, 0.45);
+  border-color: var(--btn-stroke);
+  box-shadow: var(--btn-sheen);
 }
 
 /* --- Carte en verre --- */

@@ -97,13 +97,13 @@ h1 { font-size: 28px; font-weight: 800; }
 .continuer { flex-shrink: 0; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1.5px solid var(--line); border-radius: 999px; padding: 9px 14px; font-size: 12px; font-weight: 600; color: var(--coral); box-shadow: var(--shadow-sm); }
 .liste { display: flex; flex-direction: column; gap: 11px; }
 .item { display: flex; align-items: center; gap: 12px; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 20px; padding: 12px; box-shadow: var(--shadow-sm); }
-.item img { width: 52px; height: 52px; border-radius: 14px; object-fit: cover; }
-.meta { flex: 1; }
-.meta .nom { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 15px; }
+.item img { width: 52px; height: 52px; border-radius: 14px; object-fit: cover; flex-shrink: 0; }
+.meta { flex: 1; min-width: 0; }
+.meta .nom { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .meta .taille { color: var(--ink-soft); font-size: 12px; }
-.qty { display: flex; align-items: center; gap: 8px; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; }
+.qty { display: flex; align-items: center; gap: 8px; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; flex-shrink: 0; }
 .qty button { width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.08); color: var(--ink); font-size: 16px; }
-.prix { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--coral); font-size: 14px; min-width: 56px; text-align: right; }
+.prix { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--coral); font-size: 14px; min-width: 56px; text-align: right; flex-shrink: 0; }
 .champ { display: block; margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--ink-soft); }
 .champ input, .champ select { display: block; width: 100%; margin-top: 6px; background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border: 1.5px solid var(--line); border-radius: 14px; padding: 13px 14px; font-size: 14px; font-family: inherit; }
 .recap { background: var(--glass-strong); border: 1px solid var(--stroke); backdrop-filter: blur(20px) saturate(150%); border-radius: 20px; padding: 16px 18px; box-shadow: var(--shadow-sm); margin-top: 16px; }
